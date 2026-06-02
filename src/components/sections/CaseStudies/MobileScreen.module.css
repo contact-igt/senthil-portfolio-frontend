@@ -1,0 +1,571 @@
+/* ✓ tokens: --color-casestudies-card-black, --color-casestudies-card-teal, --color-casestudies-card-beige | layout: flex, absolute, relative | reused: none */
+
+.deviceWrapper {
+  position: relative;
+  width: 260px;
+  height: 530px;
+  border-radius: 36px;
+  background-color: var(--color-white);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.35), 
+              0 15px 30px -10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform;
+  flex-shrink: 0;
+  cursor: pointer;
+  
+  /* Cascade rotation and slight offset per index */
+  transform: rotate(-25deg) translateY(calc(var(--index) * 55px)) translateX(calc(var(--index) * -15px));
+  z-index: calc(10 - var(--index));
+}
+
+.deviceWrapper:hover {
+  transform: rotate(-25deg) translateY(calc(var(--index) * 55px - 15px)) translateX(calc(var(--index) * -15px - 5px));
+  box-shadow: 0 45px 80px -20px rgba(0, 0, 0, 0.45), 
+              0 25px 40px -15px rgba(0, 0, 0, 0.25);
+}
+
+.deviceDark {
+  background-color: var(--color-casestudies-card-black);
+  border: 7px solid #23232D;
+}
+
+.deviceLight {
+  border: 7px solid #1A1A1A;
+}
+
+.innerFrame {
+  width: 100%;
+  height: 100%;
+  border-radius: 29px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Device Status Bar ────────────────────────────────── */
+.statusBar {
+  height: 38px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: var(--font-bold);
+  z-index: 10;
+  user-select: none;
+}
+
+.statusIcons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.screenContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Screen 1: Welcome Screen Styles ──────────────────── */
+.welcomeContainer {
+  flex: 1;
+  background-color: var(--color-casestudies-card-black);
+  color: var(--color-white);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.logoBadge {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #8ad7f8, #00a0e3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 160, 227, 0.3);
+}
+
+.logoText {
+  font-size: var(--text-body);
+  font-weight: var(--font-extrabold);
+  color: var(--color-white);
+}
+
+.clientTag {
+  font-size: 11px;
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.welcomeHeading {
+  font-size: 23px;
+  line-height: 1.15;
+  font-weight: var(--font-extrabold);
+  letter-spacing: -0.01em;
+  margin-top: 15px;
+  margin-bottom: auto;
+}
+
+.welcomeTitleAccent {
+  color: #8ad7f8;
+}
+
+.welcomeAccent {
+  color: #8ad7f8;
+  background: linear-gradient(90deg, #8ad7f8, #FFAE8A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footerRow {
+  margin-top: auto;
+  padding-bottom: 5px;
+}
+
+.skipBtn {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.skipBtn:hover {
+  opacity: 1;
+}
+
+/* ── Screen 2: Dashboard Overview Styles ──────────────── */
+.dashboardContainer {
+  flex: 1;
+  background-color: var(--color-casestudies-card-teal);
+  color: var(--color-black);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dashHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.homeIcon {
+  color: var(--color-black);
+}
+
+.headerLabel {
+  font-size: 16px;
+  font-weight: var(--font-extrabold);
+  letter-spacing: var(--ls-heading);
+}
+
+.dashSub {
+  font-size: 11px;
+  line-height: 1.3;
+  opacity: 0.75;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-weight: var(--font-medium);
+}
+
+/* Central White Stats Box */
+.statsCard {
+  background-color: var(--color-white);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.businessName {
+  font-size: 10px;
+  font-weight: var(--font-bold);
+  opacity: 0.85;
+}
+
+.tabBar {
+  display: flex;
+  background-color: #F0EDF6;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  gap: 2px;
+}
+
+.tabBar span {
+  font-size: 8px;
+  font-weight: var(--font-bold);
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  color: #666;
+  user-select: none;
+}
+
+.tabBar span.activeTab {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.gridStats {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.metricsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statVal {
+  font-size: 15px;
+  font-weight: var(--font-extrabold);
+  line-height: 1.1;
+  color: var(--color-black);
+}
+
+.statLabel {
+  font-size: 7px;
+  font-weight: var(--font-semibold);
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.chartCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.donutRing {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+
+.donutCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: var(--font-extrabold);
+  color: var(--color-black);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.legendDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.legendLabel {
+  font-size: 7px;
+  font-weight: var(--font-bold);
+  color: #666;
+}
+
+.tourBtn {
+  width: 100%;
+  background-color: var(--color-casestudies-bg);
+  color: var(--color-white);
+  border: none;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  font-weight: var(--font-bold);
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 160, 227, 0.2);
+}
+
+.tourBtn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.dashFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+
+.skipBtnDark {
+  background: none;
+  border: none;
+  color: var(--color-black);
+  font-size: 12px;
+  font-weight: var(--font-bold);
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.skipBtnDark:hover {
+  opacity: 1;
+}
+
+.dots {
+  display: flex;
+  gap: 4px;
+}
+
+.dot, .dotActive {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.dot {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.dotActive {
+  background-color: var(--color-black);
+}
+
+/* ── Screen 3: CRM Customers Styles ──────────────────── */
+.crmContainer {
+  flex: 1;
+  background-color: var(--color-casestudies-card-beige);
+  color: var(--color-black);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.crmTitle {
+  font-size: 17px;
+  line-height: 1.15;
+  font-weight: var(--font-extrabold);
+  letter-spacing: var(--ls-heading);
+  margin-top: 5px;
+}
+
+.crmSub {
+  font-size: 11px;
+  line-height: 1.35;
+  opacity: 0.75;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-weight: var(--font-medium);
+}
+
+/* Central CRM white Card */
+.crmCard {
+  background-color: var(--color-white);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.crmCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #F5EFE4;
+  padding-bottom: 8px;
+}
+
+.crmCardTitle {
+  font-size: 12px;
+  font-weight: var(--font-bold);
+  color: var(--color-black);
+}
+
+.crmMetrics {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: #666;
+}
+
+.dotDivider {
+  color: #CCC;
+}
+
+.customerList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.customerItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatarCircle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: var(--font-extrabold);
+  color: var(--color-white);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+
+.customerInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.custName {
+  font-size: 10px;
+  font-weight: var(--font-bold);
+  color: var(--color-black);
+}
+
+.custMeta {
+  font-size: 8px;
+  color: #888;
+}
+
+.chevron {
+  opacity: 0.4;
+}
+
+.crmFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+
+.nextBtn {
+  background: none;
+  border: none;
+  color: var(--color-black);
+  font-size: 12px;
+  font-weight: var(--font-bold);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.nextBtn:hover {
+  transform: translateX(2px);
+}
+
+/* ── Device Frame Home Pill Indicator ─────────────────── */
+.homeIndicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 4.5px;
+  border-radius: var(--radius-pill);
+  opacity: 0.85;
+  z-index: 10;
+}
+
+/* ── Mobile Layout Scaling Overrides ─────────────────── */
+@media (max-width: 992px) {
+  .deviceWrapper {
+    width: 220px;
+    height: 450px;
+    border-radius: 28px;
+    border-width: 5px;
+    transform: rotate(-20deg) translateY(calc(var(--index) * 45px)) translateX(calc(var(--index) * -12px));
+  }
+  .deviceWrapper:hover {
+    transform: rotate(-20deg) translateY(calc(var(--index) * 45px - 10px)) translateX(calc(var(--index) * -12px - 3px));
+  }
+  .innerFrame {
+    border-radius: 23px;
+  }
+  .welcomeHeading {
+    font-size: 19px;
+  }
+  .statsCard {
+    border-radius: 16px;
+    padding: 10px;
+    gap: 8px;
+  }
+  .crmCard {
+    border-radius: 16px;
+    padding: 10px;
+    gap: 8px;
+  }
+  .tourBtn {
+    padding: 6px;
+  }
+  .avatarCircle {
+    width: 22px;
+    height: 22px;
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 768px) {
+  .deviceWrapper {
+    width: 240px;
+    height: 490px;
+    transform: none !important; /* Stack vertically or horizontally on scroll, no heavy tilts */
+    border-width: 6px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  .deviceWrapper:hover {
+    transform: translateY(-5px) !important;
+  }
+}

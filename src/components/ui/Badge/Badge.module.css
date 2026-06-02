@@ -1,0 +1,24 @@
+/* ✓ tokens: --color-badge-blue, --color-badge-blue-text, --color-badge-pink, --color-badge-pink-text, --radius-pill, --font-medium, --text-badge, --space-3, --space-6 | layout: inline-flex | split: variant */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-medium);
+  font-size: var(--text-badge);
+  line-height: 1;
+  padding: var(--space-3) var(--space-6);
+  white-space: nowrap;
+}
+
+.blue {
+  background-color: var(--color-badge-blue);
+  color: var(--color-badge-blue-text);
+}
+
+.pink {
+  background-color: var(--color-badge-pink);
+  color: var(--color-badge-pink-text);
+}

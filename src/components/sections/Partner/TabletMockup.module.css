@@ -1,0 +1,447 @@
+/* ✓ tokens: --color-partner-purple, --color-partner-peach, --color-partner-teal, --color-partner-grid | layout: absolute, flex, grid | split: graphic styling */
+
+.visualContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 380px;
+  max-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  z-index: 2;
+}
+
+/* ── Blueprint Grid Backdrop ────────────────────────────── */
+.gridBlueprint {
+  position: absolute;
+  inset: 0;
+  background-size: 32px 32px;
+  background-image:
+    linear-gradient(to right, var(--color-partner-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-partner-grid) 1px, transparent 1px);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Neon Backdrop Shapes ──────────────────────────────── */
+.purpleBlob {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  width: 65%;
+  height: 70%;
+  background: var(--color-partner-purple);
+  opacity: 0.75;
+  filter: blur(80px);
+  border-radius: 40% 60% 60% 40% / 50% 30% 70% 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.peachDot {
+  position: absolute;
+  bottom: 12%;
+  left: 2%;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-partner-peach);
+  border-radius: var(--radius-pill);
+  filter: drop-shadow(0 0 12px var(--color-partner-peach));
+  opacity: 0.9;
+  z-index: 4;
+}
+
+.tealDot {
+  position: absolute;
+  bottom: 8%;
+  left: 14%;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-partner-teal);
+  border-radius: var(--radius-pill);
+  filter: drop-shadow(0 0 8px var(--color-partner-teal));
+  opacity: 0.9;
+  z-index: 4;
+}
+
+.crosshairWrap {
+  position: absolute;
+  top: 12%;
+  right: 18%;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+/* ── Tablet Bezel & Frame Casing ────────────────────────── */
+.tabletFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  aspect-ratio: 16 / 11;
+  background-color: #0b0b0f;
+  border: 12px solid #1c1c24;
+  border-radius: 32px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 0 12px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
+
+.screenGlare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bezelHeader {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121218;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  z-index: 6;
+}
+
+.cameraNotch {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background-color: #08080c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Dashboard Application Casing ─────────────────────── */
+.dashboardApp {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 48px 1fr 130px;
+  background-color: #060609;
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* ── 1. Sidebar Navigation Styles ──────────────────────── */
+.sidebar {
+  background-color: #0d0d12;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3) 0;
+}
+
+.logoWrap {
+  margin-bottom: var(--space-4);
+}
+
+.appLogo {
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-partner-purple);
+  border-radius: 4px;
+  position: relative;
+}
+
+.appLogo::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 2.5px solid var(--color-partner-teal);
+  border-radius: 2px;
+}
+
+.sideNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  align-items: center;
+}
+
+.navItemActive {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+}
+
+.navItemActive::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-partner-teal);
+  border-radius: var(--radius-pill);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navItem {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.navItem::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── 2. Main Content Dashboard Panel ──────────────────── */
+.mainPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.metricsBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.metricCard {
+  background-color: #0e0e14;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cardLabel {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.cardValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-partner-text);
+  margin-bottom: var(--space-2);
+}
+
+.sparkline {
+  width: 100%;
+  opacity: 0.8;
+}
+
+/* Main Scatter Chart Casing */
+.chartCard {
+  flex: 1;
+  background-color: #0e0e14;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chartHeader {
+  margin-bottom: var(--space-2);
+}
+
+.chartTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.scatterPlot {
+  flex: 1;
+  position: relative;
+  background-color: #08080c;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+}
+
+.chartGridLines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.gridRow {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Coordinate Dots */
+.scatterDot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  transform: translate(-50%, 50%);
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.dotOrange {
+  background-color: var(--color-partner-peach);
+  box-shadow: 0 0 6px var(--color-partner-peach);
+}
+
+.dotBlue {
+  background-color: var(--color-partner-purple);
+  box-shadow: 0 0 6px var(--color-partner-purple);
+}
+
+.dotWhite {
+  background-color: var(--color-partner-teal);
+  box-shadow: 0 0 6px var(--color-partner-teal);
+}
+
+/* ── 3. Right Side Panel Analytics ─────────────────────── */
+.rightPanel {
+  background-color: #0b0b0f;
+  padding: var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.donutCard {
+  background-color: #0e0e14;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donutContainer {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: var(--space-3) 0 var(--space-4);
+}
+
+.donutCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donutPercent {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-partner-text);
+  line-height: 1;
+}
+
+.donutSubText {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+.donutLegend {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.legendColor {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.colorPurple {
+  background-color: var(--color-partner-purple);
+}
+
+.colorTeal {
+  background-color: var(--color-partner-teal);
+}
+
+/* ── Keyframe Animations ───────────────────────────────── */
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: translate(-50%, 50%) scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translate(-50%, 50%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .visualContainer {
+    aspect-ratio: 4 / 3;
+    padding: var(--space-2);
+    min-height: auto;
+    max-height: none;
+  }
+}
+
+.imageContainer {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #060609;
+}
+
+.mockupImage {
+  object-fit: cover;
+  object-position: center;
+}

@@ -1,0 +1,632 @@
+/* ✓ tokens: --color-black, --color-recentcasestudies-grj-bg, --color-recentcasestudies-twolist-bg, --color-recentcasestudies-text-muted, --radius-xl | layout: flex, grid, absolute | split: scoped CSS modules */
+
+.section {
+  position: relative;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: clamp(60px, 8vw, 100px) 0;
+  border-radius: 48px 48px 0 0;
+  margin-top: -48px; /* overlap previous light section curves */
+  z-index: 12;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ── Header ── */
+.header {
+  margin-bottom: clamp(40px, 6vw, 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-family-primary);
+  font-size: var(--text-section-heading);
+  font-weight: var(--font-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-white);
+  margin-bottom: var(--space-3);
+}
+
+.subheading {
+  font-family: var(--font-family-primary);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-regular);
+  color: var(--color-recentcasestudies-text-muted);
+}
+
+/* ── Grid Layout ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  margin-bottom: clamp(50px, 7vw, 80px);
+}
+
+/* ── Card ── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  cursor: pointer;
+}
+
+.mockupContainer {
+  position: relative;
+  height: clamp(320px, 35vw, 440px);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .mockupContainer {
+  transform: translateY(-8px);
+}
+
+/* Specific background styles for each card */
+.grj {
+  background-color: var(--color-recentcasestudies-grj-bg);
+}
+
+.twolist {
+  background-color: var(--color-recentcasestudies-twolist-bg);
+  padding: var(--space-8);
+}
+
+.award3 {
+  background-color: var(--color-badge-blue);
+}
+
+.award4 {
+  background-color: var(--color-trust-bar-bg);
+}
+
+.awardYearGraphic {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.awardYear {
+  font-size: clamp(4rem, 8vw, 6rem);
+  font-weight: var(--font-extrabold);
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 1;
+}
+
+.awardIcon {
+  font-size: clamp(3rem, 5vw, 4rem);
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+}
+
+/* Card details underneath mockups */
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.badgeWrapper {
+  display: flex;
+}
+
+.cardBadge {
+  display: inline-flex;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-recentcasestudies-badge-border);
+  font-size: var(--text-badge);
+  font-weight: var(--font-semibold);
+  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: background-color 0.3s ease;
+}
+
+.card:hover .cardBadge {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cardTitle {
+  font-family: var(--font-family-primary);
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: var(--font-bold);
+  line-height: 1.2;
+  color: var(--color-white);
+  transition: color 0.3s ease;
+}
+
+.tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.tagBadge {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: var(--font-medium);
+}
+
+/* ── CTA Button Centering ── */
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Great Rail Journeys (GRJ) Mockup styling ── */
+.grjWrapper {
+  width: 90%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.tabletDevice {
+  position: relative;
+  width: 90%;
+  height: 95%;
+  background: #00304a;
+  border: 10px solid #001e2e;
+  border-radius: 20px;
+  box-shadow: var(--shadow-mockup);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabletScreen {
+  position: relative;
+  flex: 1;
+  background-color: #00304a;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.screenBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.85) 100%);
+  z-index: 2;
+}
+
+.webContent {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+}
+
+/* Web Header inside Mockup */
+.webHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: auto;
+}
+
+.webLogoRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.webLogo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logoCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  color: #0f172a;
+  font-size: 8px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoText {
+  font-size: 6px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.webNav {
+  display: flex;
+  gap: 10px;
+}
+
+.webNav span {
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: var(--font-medium);
+}
+
+.headerRight {
+  font-size: 10px;
+}
+
+/* Web Search Form Card */
+.searchCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.searchHeading {
+  font-size: 10px;
+  font-weight: var(--font-extrabold);
+  letter-spacing: 0.05em;
+  color: var(--color-white);
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.searchSub {
+  font-size: 6px;
+  font-weight: var(--font-regular);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.searchForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.formGroup label {
+  font-size: 5px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.fakeInput {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 6px;
+  color: var(--color-white);
+  padding: 4px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fakeSearchBtn {
+  background-color: #f59e0b; /* Yellow/orange CTA background */
+  color: #0f172a;
+  border: none;
+  border-radius: 4px;
+  font-size: 6px;
+  font-weight: var(--font-bold);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.bottomHint {
+  text-align: center;
+  font-size: 5px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.screenGlare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── twolist Mockup Styling ── */
+.twolistWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.phoneDevice {
+  position: relative;
+  width: 175px;
+  height: 350px;
+  background-color: #000000;
+  border: 8px solid #222222;
+  border-radius: 28px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    -10px 10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: rotateY(-8deg) rotateX(8deg) rotateZ(-3deg);
+  transition: transform 0.5s ease;
+}
+
+.card:hover .phoneDevice {
+  transform: rotateY(-2deg) rotateX(3deg) rotateZ(-1deg) scale(1.03);
+}
+
+.phoneScreen {
+  position: relative;
+  flex: 1;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--color-black);
+}
+
+.phoneStatusBar {
+  height: 20px;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 8px;
+  font-weight: 700;
+  z-index: 10;
+  color: var(--color-black);
+}
+
+.phoneIcons {
+  display: flex;
+  gap: 4px;
+}
+
+.phoneNotch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 14px;
+  background-color: #000000;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 10;
+}
+
+.phoneContent {
+  flex: 1;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  margin-top: 10px; /* Offset for status bar & notch */
+}
+
+/* App Logo in mobile screen */
+.appLogoSection {
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.twolistLogoIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--color-recentcasestudies-twolist-bg);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.twolistName {
+  font-size: 14px;
+  font-weight: var(--font-extrabold);
+  color: var(--color-black);
+  margin-bottom: 2px;
+}
+
+.twolistSub {
+  font-size: 8px;
+  font-weight: var(--font-medium);
+  color: #64748b;
+  text-transform: lowercase;
+}
+
+/* Checklist elements */
+.checklistCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px 10px;
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkCircle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checked {
+  border-color: #10b981;
+  background-color: #10b981;
+  color: var(--color-white);
+}
+
+.fakeCheckText {
+  flex: 1;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 3px;
+}
+
+.fakeCheckTextMuted {
+  flex: 1;
+  height: 6px;
+  background-color: #f1f5f9;
+  border-radius: 3px;
+}
+
+/* Auth section */
+.oauthContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.oauthBtn {
+  background: var(--color-white);
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 8px;
+  font-weight: var(--font-semibold);
+  color: #1e293b;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.oauthBtn span {
+  font-size: 8px;
+}
+
+.phoneGlare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 60%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── Responsive Styling ── */
+@media (max-width: 992px) {
+  .grid {
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    border-radius: 32px 32px 0 0;
+    margin-top: -32px;
+    padding: var(--space-12) 0;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+  .mockupContainer {
+    height: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mockupContainer {
+    height: 300px;
+  }
+  .phoneDevice {
+    width: 150px;
+    height: 290px;
+  }
+  .tabletDevice {
+    width: 95%;
+  }
+}
+
+.header,
+.card {
+  will-change: transform, opacity;
+}
+

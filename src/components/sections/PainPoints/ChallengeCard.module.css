@@ -1,0 +1,45 @@
+/* ✓ tokens: --color-card-bg, --color-card-border-left-blue, --color-card-border-left-pink, --color-card-quote, --color-section-subtext, --radius-lg, --shadow-card, --font-bold, --font-regular, --text-body-lg, --text-body, --space-4, --space-6, --space-8 | layout: flex column | split: reusable sub-component */
+
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-8);
+  border-left: 4px solid transparent;
+  position: relative;
+}
+
+.blue {
+  border-left-color: var(--color-card-border-left-blue);
+}
+
+.pink {
+  border-left-color: var(--color-card-border-left-pink);
+}
+
+.quote,
+.headline {
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-card-quote);
+  line-height: 1.35;
+  margin-bottom: var(--space-4);
+}
+
+.description {
+  font-size: var(--text-body);
+  font-weight: var(--font-regular);
+  color: var(--color-section-subtext);
+  line-height: var(--lh-body);
+}
+
+.avatarWrap {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-badge-pink);
+}

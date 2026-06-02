@@ -1,0 +1,199 @@
+/* ✓ tokens: --color-nav-link, --text-nav, --font-medium, --space-4, --space-6, --space-8, --space-10 | layout: flex space-between | split: Navbar is standalone section */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6) var(--space-10);
+  width: 100%;
+  transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+  will-change: padding, background, box-shadow, backdrop-filter;
+}
+
+.scrolled {
+  background: rgba(0, 47, 66, 0.92);
+  /* --color-trust-bar-bg with alpha */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: var(--space-4) var(--space-10);
+  /* shrink on scroll */
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.link {
+  color: var(--color-nav-link);
+  font-size: var(--text-nav);
+  font-weight: var(--font-medium);
+  font-family: var(--font-family-primary);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.link:hover {
+  opacity: 0.75;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* ── Hamburger Menu Button ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.bar {
+  width: 100%;
+  height: 2.2px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .navRight {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* ── Mobile Inset Menu Overlay Card ── */
+  .menuOverlay {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border-radius: 28px;
+    padding: var(--space-6) var(--space-6) var(--space-10) var(--space-6);
+    background-color: #002f42;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-20px) scale(0.96);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  .menuHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .closeButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobileLinks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    flex: 1;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 0;
+  }
+
+  .mobileLinkItem {
+    text-align: center;
+    width: 100%;
+  }
+
+  .mobileLink {
+    font-family: var(--font-family-primary);
+    font-size: 2rem;
+    font-weight: var(--font-bold);
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+  }
+
+  .mobileLink:hover {
+    opacity: 0.8;
+    transform: scale(1.03);
+  }
+
+  .menuFooter {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .mobileCtaButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #0c0c0e;
+    font-family: var(--font-family-primary);
+    font-size: 1.1rem;
+    font-weight: var(--font-bold);
+    text-decoration: none;
+    padding: 14px 44px;
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .mobileCtaButton:hover {
+    background-color: #f3ede2;
+    transform: translateY(-2px);
+  }
+}

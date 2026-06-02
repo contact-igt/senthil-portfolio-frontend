@@ -1,0 +1,150 @@
+/* ✓ tokens: --color-section-bg, --color-section-text, --color-section-subtext, --color-star-accent, --text-section-heading, --font-light, --lh-heading, --ls-heading, --space-4, --space-6, --space-8, --space-10, --space-12, --space-16, --space-20, --space-24 | layout: flex column | split: main PainPoints section */
+
+.section {
+  position: relative;
+  background-color: var(--color-section-bg);
+  padding: var(--space-24) var(--space-6) var(--space-20);
+  overflow: visible;
+}
+
+/* .section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #002f42;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  z-index: 1;
+} */
+
+.headingWrap {
+  text-align: center;
+  margin-bottom: var(--space-6);
+  position: relative;
+}
+
+.heading {
+  font-size: var(--text-section-heading);
+  font-weight: var(--font-light);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-section-text);
+}
+
+.decorativeWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-12);
+  position: relative;
+}
+
+/* Orange decorative star — absolute positioned top-right */
+.starDecor {
+  position: absolute;
+  top: var(--space-8);
+  right: var(--space-10);
+  z-index: 1;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto var(--space-8);
+  padding: 0 var(--space-6);
+  /* NOT centered — left badge at ~15% x, right at ~55% x */
+  gap: 0;
+}
+
+.badgeLeft {
+  margin-left: 10%;
+}
+
+.badgeRight {
+  margin-left: auto;
+  margin-right: 20%;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.cardColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.imageBlock {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.ctaSection {
+  text-align: center;
+  margin-top: var(--space-24);
+}
+
+.ctaHeading {
+  font-size: var(--text-section-heading);
+  font-weight: var(--font-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-section-text);
+}
+
+.ctaDecorative {
+  display: inline-block;
+  color: var(--color-badge-blue);
+  margin-right: var(--space-2);
+}
+
+.ctaButtonWrap {
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-16) var(--space-4) var(--space-12);
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .badgeRow {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .badgeLeft,
+  .badgeRight {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .starDecor {
+    right: var(--space-4);
+    top: var(--space-4);
+  }
+}
+
+.headingWrap,
+.decorativeWrap,
+.badgeLeft,
+.badgeRight,
+.ctaSection {
+  will-change: transform, opacity;
+}

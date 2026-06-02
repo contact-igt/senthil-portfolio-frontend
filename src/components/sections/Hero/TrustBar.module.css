@@ -1,0 +1,176 @@
+.trustBadgesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: visible;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  position: absolute;
+  filter: drop-shadow(0 12px 24px rgba(0, 47, 66, 0.15));
+  transition: transform 0.3s ease;
+}
+
+.badgeLeft {
+  left: 8%;
+  bottom: 24%;
+}
+
+.badgeRight {
+  right: 8%;
+  bottom: 18%;
+}
+
+.iconCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 47, 66, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.textPill {
+  margin-left: -12px;
+  padding: 10px 20px 10px 24px;
+  background: rgba(0, 47, 66, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 30px;
+  color: #ffffff;
+  z-index: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.label {
+  font-size: var(--text-body);
+  font-weight: var(--font-bold);
+  white-space: nowrap;
+}
+
+.ratingText {
+  font-size: var(--text-body);
+  font-weight: var(--font-bold);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+  letter-spacing: -1px;
+}
+
+.googleG {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.badge:hover {
+  filter: drop-shadow(0 16px 32px rgba(0, 160, 227, 0.25));
+}
+
+.badge:hover .iconCircle {
+  background: rgba(0, 160, 227, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.badge:hover .textPill {
+  background: rgba(0, 47, 66, 0.7);
+  border-color: rgba(0, 160, 227, 0.3);
+}
+
+/* Responsive Positions */
+@media (max-width: 1200px) {
+  .badgeLeft {
+    left: 4%;
+    bottom: 20%;
+  }
+  .badgeRight {
+    right: 4%;
+    bottom: 15%;
+  }
+}
+
+@media (max-width: 900px) {
+  .badgeLeft {
+    left: 3%;
+    bottom: 12%;
+    transform: scale(0.9) !important;
+  }
+  .badgeRight {
+    right: 3%;
+    bottom: 8%;
+    transform: scale(0.9) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* On small screens, stack them near the bottom center to avoid text overlapping */
+  .trustBadgesContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-12);
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    pointer-events: auto;
+    padding: 0 var(--space-4);
+  }
+
+  .badge {
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    max-width: 100%;
+    width: auto;
+  }
+
+  .textPill {
+    padding: 10px 25px 10px;
+    display: flex;;
+    flex-direction: column;
+  }
+  .ratingText{
+    display: flex;
+    flex-direction: column;
+  }
+  .label,
+  .ratingText {
+    white-space: normal;
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+}

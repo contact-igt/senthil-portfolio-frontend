@@ -1,0 +1,1014 @@
+/* ✓ tokens: --color-white, --color-black, --font-family-primary | layout: flex, grid, absolute, relative | split: dark-themed Pathway section */
+
+/* ── Section Shell ── */
+.section {
+  position: relative;
+  background-color: #F3EDE2;
+  /* Cream outer — matches Partnerships curvedPanel above */
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Curved inner panel — dark content area with rounded top */
+.curvedPanel {
+  background-color: var(--color-black);
+  color: #fff;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  padding: clamp(80px, 10vw, 130px) 0;
+  width: 100%;
+  position: relative;
+}
+
+/* Subtle radial glow in top-left */
+.curvedPanel::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 160, 227, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ── Section Header ── */
+.header {
+  margin-bottom: clamp(60px, 8vw, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-family-primary);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: var(--font-bold);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+  max-width: 680px;
+}
+
+.subheading {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* ── Single Continuous Connector Line ── */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 85px;
+  /* Starts exactly at center of first badge */
+  bottom: 85px;
+  /* Ends exactly at center of last badge */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 0;
+}
+
+.connectorLine {
+  position: absolute;
+  top: 85px;
+  bottom: 85px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 2px;
+  background: #00a0e3;
+  z-index: 1;
+  transform-origin: top;
+  transform: scaleY(0);
+  will-change: transform;
+}
+
+/* ── Step Row ── */
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  padding: 60px 0;
+  position: relative;
+}
+
+/* ── Half-width horizontal divider to match reference ── */
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Left column: mockup graphic ── */
+.stepLeft {
+  padding-right: var(--space-10);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  will-change: transform, opacity;
+}
+
+/* ── Centre column: step number + connector line ── */
+.stepCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.stepBadge {
+  position: relative;
+  z-index: 5;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #00a0e3;
+  background-color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-primary);
+  font-size: 1.15rem;
+  font-weight: var(--font-bold);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 160, 227, 0.3), 0 0 6px rgba(0, 160, 227, 0.2);
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+/* ── Right column: text content ── */
+.stepRight {
+  padding-left: var(--space-10);
+  will-change: transform, opacity;
+}
+
+.stepTitle {
+  font-family: var(--font-family-primary);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  /* Adjusted slightly for exact match */
+  font-weight: var(--font-bold);
+  color: var(--color-white);
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: var(--space-5);
+  line-height: 1.15;
+  margin-top: -4px;
+}
+
+.stepDescription {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  /* Much larger to match reference */
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--space-6);
+}
+
+.checkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.checkItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  font-size: 1.05rem;
+  /* Slightly larger text */
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.checkItem::before {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8.5L6.5 12 13 4' stroke='%2300a0e3' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 4px;
+}
+
+.whyHeading {
+  font-family: var(--font-family-primary);
+  font-size: 1.25rem;
+  /* Larger to match reference */
+  font-weight: var(--font-bold);
+  color: var(--color-white);
+  margin-bottom: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+/* ═══════════════════════════════════════════════════
+   MOCKUP CARD SHARED STYLES
+═══════════════════════════════════════════════════ */
+.mockupCard {
+  width: 220px;
+  height: 200px;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step:hover .mockupCard {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* ─ 1. Discovery Card ─ */
+.discoveryCard {
+  background-color: #cde8f0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  gap: var(--space-3);
+}
+
+.stickyTopRight {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background-color: #f5d060;
+  width: 52px;
+  padding: 7px 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.stickyLineShort {
+  height: 2.5px;
+  width: 55%;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 1px;
+}
+
+.stickyLineLong {
+  height: 2.5px;
+  width: 85%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1px;
+}
+
+.discoveryTT {
+  font-family: serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4a5568;
+  margin-top: var(--space-5);
+  margin-left: var(--space-2);
+}
+
+.discoveryDots {
+  display: flex;
+  gap: 8px;
+  margin-left: var(--space-2);
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.dotYellow {
+  background-color: #f5c518;
+}
+
+.dotGreen {
+  background-color: #22c55e;
+}
+
+.dotPurple {
+  background-color: #a78bfa;
+}
+
+.discoveryTarget {
+  position: absolute;
+  bottom: 28px;
+  left: 22px;
+}
+
+.ring3 {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(74, 85, 104, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring2 {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(74, 85, 104, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring1 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(74, 85, 104, 0.5);
+}
+
+.discoveryEnvelope {
+  position: absolute;
+  bottom: 30px;
+  right: 60px;
+  opacity: 0.65;
+}
+
+.discoveryCursor {
+  position: absolute;
+  bottom: 14px;
+  right: 26px;
+  opacity: 0.7;
+}
+
+.stickyBottomLeft {
+  position: absolute;
+  bottom: 16px;
+  left: 18px;
+  background-color: #f5d060;
+  width: 60px;
+  padding: 7px 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ─ 2. UX Design Card ─ */
+.uxCard {
+  background-color: #f5efe0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.flowChart {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.flowBlock {
+  width: 46px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6px 7px;
+  gap: 5px;
+}
+
+.flowBlockPink {
+  background-color: #f8b4d4;
+}
+
+.flowBlockYellow {
+  background-color: #fde68a;
+}
+
+.flowBlockPurple {
+  background-color: #c4b5fd;
+}
+
+.flowBlockLine {
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1px;
+}
+
+.flowBlockLine:first-child {
+  width: 70%;
+}
+
+.flowBlockLine:last-child {
+  width: 90%;
+}
+
+.flowArrowH {
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.flowDiamond {
+  width: 56px;
+  height: 56px;
+  background-color: #38bdf8;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  flex-shrink: 0;
+}
+
+.flowDiamond span {
+  transform: rotate(-45deg);
+  font-size: 8px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.flowArrowV {
+  align-self: flex-start;
+}
+
+.flowBottomRow {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-top: 2px;
+}
+
+/* ─ 3. Brand Card ─ */
+.brandCard {
+  background-color: #f5c518;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.brandBlobRed {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background-color: #e84848;
+  border-radius: 50% 0 50% 50%;
+  top: 18px;
+  right: 22px;
+}
+
+.brandBlobOrange {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: #f97316;
+  border-radius: 50% 50% 0 50%;
+  top: 14px;
+  right: 52px;
+}
+
+.brandAsterisk {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  z-index: 3;
+}
+
+.brandPaper {
+  background-color: white;
+  width: 140px;
+  padding: 20px 18px;
+  border-radius: 6px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  transform: rotate(-6deg);
+  position: relative;
+  z-index: 2;
+}
+
+.brandPaperTitle {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.brandPaperLines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.brandPaperLine {
+  height: 2px;
+  border-radius: 1px;
+  background-color: #e2e8f0;
+}
+
+.brandPaperLine:first-child {
+  width: 100%;
+}
+
+.brandPaperLine:last-child {
+  width: 70%;
+}
+
+.brandPaperArrow {
+  display: flex;
+  align-items: center;
+}
+
+/* ─ 4. Design Direction Card ─ */
+.directionCard {
+  background-color: #f0f2f5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 16px 0;
+}
+
+.directionFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85px;
+}
+
+.directionFrameRight {
+  align-self: flex-start;
+  margin-top: 16px;
+}
+
+.directionFrameLabel {
+  font-size: 9px;
+  font-weight: 700;
+  color: #4a5568;
+  margin-bottom: 5px;
+  letter-spacing: 0.03em;
+}
+
+.directionFrameBody {
+  background-color: white;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  min-height: 115px;
+}
+
+.creativeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-bottom: 4px;
+}
+
+.creativeBlock {
+  height: 16px;
+  border-radius: 3px;
+}
+
+.cbGreen {
+  background-color: #22c55e;
+}
+
+.cbBlue {
+  background-color: #3b82f6;
+}
+
+.cbPurple {
+  background-color: #a855f7;
+}
+
+.cbYellow {
+  background-color: #eab308;
+}
+
+.directionLineShort {
+  height: 3px;
+  background-color: #e2e8f0;
+  border-radius: 1px;
+  width: 55%;
+}
+
+.directionLineLong {
+  height: 3px;
+  background-color: #e2e8f0;
+  border-radius: 1px;
+  width: 85%;
+}
+
+.directionCta {
+  height: 10px;
+  background-color: #22c55e;
+  border-radius: 3px;
+  width: 70%;
+  margin-top: 4px;
+}
+
+.directionCtaPurple {
+  background-color: #a855f7;
+}
+
+.corporatePhoto {
+  width: 100%;
+  height: 44px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.corporatePhotoBg {
+  width: 28px;
+  height: 34px;
+  background: linear-gradient(180deg, #fbbf24 0%, #f97316 100%);
+  border-radius: 50% 50% 0 0;
+  opacity: 0.8;
+}
+
+/* ─ 5. UI Delivery Card ─ */
+.deliveryCard {
+  background-color: #002f42;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.deliveryBrowser {
+  background-color: #001c27;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.browserDots {
+  display: flex;
+  gap: 4px;
+}
+
+.browserDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: block;
+}
+
+.browserBar {
+  flex: 1;
+  height: 7px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.deliveryContent {
+  flex: 1;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chartRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 65px;
+}
+
+.chartBar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  flex: 1;
+}
+
+.chartBarBlue {
+  background-color: #3b82f6;
+}
+
+.chartBarGreen {
+  background-color: #22c55e;
+}
+
+.chartBarPurple {
+  background-color: #a855f7;
+}
+
+.chartBarPink {
+  background-color: #ec4899;
+}
+
+.deliverySlider {
+  padding: 0 2px;
+}
+
+.sliderTrack {
+  position: relative;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.sliderFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 62%;
+  background-color: #00a0e3;
+  border-radius: 2px;
+}
+
+.sliderThumb {
+  position: absolute;
+  top: 50%;
+  left: 62%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 160, 227, 0.5);
+}
+
+.deliveryToggles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.toggleLabel {
+  height: 4px;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  flex: 1;
+}
+
+.togglePill {
+  width: 22px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.toggleOn {
+  background-color: #00a0e3;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .step {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: var(--space-8);
+    padding: 50px 0;
+  }
+
+  .stepLeft {
+    padding-right: 0;
+    justify-content: flex-start;
+    order: 2;
+  }
+
+  .stepCenter {
+    flex-direction: row;
+    order: 1;
+  }
+
+  .stepConnector {
+    display: none;
+  }
+
+  .stepRight {
+    padding-left: 0;
+    order: 3;
+  }
+
+  .stepBadge {
+    margin-top: 0;
+    margin-right: var(--space-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .heading {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  }
+
+  .mockupCard {
+    width: 180px;
+    height: 165px;
+  }
+}
+
+/* ── Mobile Accordion ── */
+.mobileAccordion {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .timeline {
+    display: none !important;
+  }
+
+  .mobileAccordion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .accordionItem {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    width: 100%;
+    overflow: visible;
+  }
+
+  .accordionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 8px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    user-select: none;
+  }
+
+  .accordionHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .accordionBadge {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #00a0e3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-primary);
+    font-size: 1.15rem;
+    font-weight: var(--font-bold);
+    color: #fff;
+    background-color: transparent;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(0, 160, 227, 0.15);
+  }
+
+  .accordionTitle {
+    font-family: var(--font-family-primary);
+    font-size: 1.45rem;
+    font-weight: var(--font-bold);
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .accordionToggleIcon {
+    font-size: 1.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+
+  .accordionPanel {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  }
+
+  .accordionPanelExpanded {
+    max-height: 1200px;
+    opacity: 1;
+  }
+
+  .accordionTextContent {
+    padding: 0 12px 32px 12px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .accordionGraphicWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 0 45px;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+  }
+
+  /* Force standard desktop mockup card size inside accordion, then scale by 1.35x */
+  .accordionGraphicWrapper .mockupCard {
+    width: 220px !important;
+    height: 200px !important;
+    transform: scale(1.35) !important;
+    transform-origin: center center !important;
+    margin: 35px 0 !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Specific tweak for smaller screens below 375px so mockup fits */
+  @media (max-width: 375px) {
+    .accordionGraphicWrapper .mockupCard {
+      transform: scale(1.15) !important;
+      margin: 20px 0 !important;
+    }
+
+    .accordionTitle {
+      font-size: 1.25rem;
+    }
+
+    .accordionHeader {
+      padding: 18px 4px;
+    }
+  }
+
+  /* Overrides for Discovery Sticky Notes inside expanded accordion panel */
+  .accordionGraphicWrapper .discoveryCard {
+    overflow: visible !important;
+  }
+
+  .accordionGraphicWrapper .stickyTopRight {
+    top: -14px !important;
+    right: 18px !important;
+    transform: rotate(2deg);
+  }
+
+  .accordionGraphicWrapper .stickyBottomLeft {
+    bottom: -14px !important;
+    left: 18px !important;
+    transform: rotate(-2deg);
+  }
+}

@@ -1,0 +1,18 @@
+/* ✓ tokens: --color-card-bg, --color-card-border-left-blue, --color-card-border-left-pink, --radius-lg, --shadow-card, --space-8 | layout: block | split: variant border */
+
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-8);
+  border-left: 4px solid transparent;
+  width: 100%;
+}
+
+.blue {
+  border-left-color: var(--color-card-border-left-blue);
+}
+
+.pink {
+  border-left-color: var(--color-card-border-left-pink);
+}
