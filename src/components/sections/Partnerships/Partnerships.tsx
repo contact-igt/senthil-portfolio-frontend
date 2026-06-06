@@ -14,6 +14,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Insights from a conversation with Chris Fordy at ActionCOACH York & Leeds',
     tags: ['Advice', 'Business'],
     graphicVariant: 'interview',
+    imageSrc: '/images/img1.jpeg',
   },
   {
     id: 'pt-2',
@@ -21,6 +22,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Mastering client communication, essential skill for UX freelance',
     tags: ['Advice', 'Clients', 'Freelance'],
     graphicVariant: 'sofa',
+    imageSrc: '/images/img2.jpeg',
   },
   {
     id: 'pt-3',
@@ -28,6 +30,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Zoom call about getting clients with James Morris',
     tags: ['Advice', 'Clients', 'Experience'],
     graphicVariant: 'zoom',
+    imageSrc: '/images/img3.jpeg',
   },
   {
     id: 'pt-7',
@@ -35,6 +38,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Leveraging generative AI in your daily design process',
     tags: ['AI', 'Design', 'Experience'],
     graphicVariant: 'ai',
+    imageSrc: '/images/img4.jpeg',
   },
   {
     id: 'pt-8',
@@ -42,6 +46,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Designing at scale with advanced Figma component structures',
     tags: ['Figma', 'Design', 'Advice'],
     graphicVariant: 'figma',
+    imageSrc: '/images/img5.jpeg',
   },
   {
     id: 'pt-9',
@@ -49,6 +54,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Establishing standard UX deliverables and content strategies',
     tags: ['Content', 'Clients', 'Design'],
     graphicVariant: 'content',
+    imageSrc: '/images/img6.jpeg',
   },
   {
     id: 'pt-4',
@@ -56,6 +62,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'A few soft skills which will make you a more mature UX designer',
     tags: ['Advice', 'Design'],
     graphicVariant: 'skills',
+    imageSrc: '/images/img7.jpeg',
   },
   {
     id: 'pt-5',
@@ -63,6 +70,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Laurence Moreton Burt seeks UX opportunities and advice',
     tags: ['Advice', 'Freelance'],
     graphicVariant: 'laurence',
+    imageSrc: '/images/img8.jpeg',
   },
   {
     id: 'pt-6',
@@ -70,6 +78,7 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
     title: 'Working as UX designer in a company full-time versus freelancing',
     tags: ['Advice', 'Freelance'],
     graphicVariant: 'freelance',
+    imageSrc: '/images/img1.jpeg',
   },
 ];
 
@@ -87,60 +96,75 @@ export function Partnerships({
 
   const ref = useScrollAnimation<HTMLElement>((container) => {
     // Header reveal
-    gsap.from(container.querySelectorAll('[data-animate="header"]'), {
-      y: 35,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: container.querySelector('[data-animate="header"]'),
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    });
+    const headerEls = container.querySelectorAll('[data-animate="header"]');
+    const headerTrigger = container.querySelector('[data-animate="header"]');
+    if (headerEls.length && headerTrigger) {
+      gsap.from(headerEls, {
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: headerTrigger,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
 
     // Filter bar entrance
-    gsap.from(container.querySelectorAll('[data-animate="filter-pill"]'), {
-      y: 15,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.05,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: container.querySelector('.' + styles.filterBar),
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    });
+    const filterEls = container.querySelectorAll('[data-animate="filter-pill"]');
+    const filterTrigger = container.querySelector('.' + styles.filterBar);
+    if (filterEls.length && filterTrigger) {
+      gsap.from(filterEls, {
+        y: 15,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: filterTrigger,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
 
     // Cards staggered entry
-    gsap.from(container.querySelectorAll('[data-animate="partnership-card"]'), {
-      scale: 0.95,
-      y: 40,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.08,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: container.querySelector('.' + styles.grid),
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    });
+    const cardEls = container.querySelectorAll('[data-animate="partnership-card"]');
+    const gridTrigger = container.querySelector('.' + styles.grid);
+    if (cardEls.length && gridTrigger) {
+      gsap.from(cardEls, {
+        scale: 0.95,
+        y: 40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: gridTrigger,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
 
     // Pop the badges inside each card when in view
-    gsap.from(container.querySelectorAll('[data-animate="tag-badge"]'), {
-      scale: 0,
-      opacity: 0,
-      duration: 0.4,
-      stagger: 0.04,
-      ease: 'back.out(1.7)',
-      scrollTrigger: {
-        trigger: container.querySelector('.' + styles.grid),
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
-    });
+    const badgeEls = container.querySelectorAll('[data-animate="tag-badge"]');
+    if (badgeEls.length && gridTrigger) {
+      gsap.from(badgeEls, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.04,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: gridTrigger,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
   }, [activeFilter]);
 
   return (

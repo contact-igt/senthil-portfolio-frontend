@@ -3,9 +3,10 @@
 .visualContainer {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  min-height: 380px;
-  max-height: 520px;
+  /* Match the tablet frame aspect-ratio so the inner frame doesn't get cropped */
+  aspect-ratio: 16 / 11;
+  min-height: 430px;
+  max-height: 580px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -442,6 +443,7 @@
 }
 
 .mockupImage {
-  object-fit: cover;
+  /* Show the full profile image inside the tablet screen without unexpected cropping */
+  object-fit: contain;
   object-position: center;
 }

@@ -227,6 +227,8 @@ export interface PartnershipItem {
   title: string;
   tags: string[];
   graphicVariant: 'interview' | 'sofa' | 'zoom' | 'skills' | 'laurence' | 'freelance' | 'ai' | 'figma' | 'content';
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 export interface PartnershipsProps {

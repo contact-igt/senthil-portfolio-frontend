@@ -36,14 +36,15 @@ export function PartnershipCard({ data }: PartnershipCardProps) {
     }
   };
 
-  const imageSrc = getImageSrc(data.graphicVariant);
+  const imageSrc = data.imageSrc ?? getImageSrc(data.graphicVariant);
+  const imageAlt = data.imageAlt ?? data.title;
 
   return (
     <article className={styles.card}>
       <div className={styles.mediaWrapper}>
         <Image
           src={imageSrc}
-          alt={data.title}
+          alt={imageAlt}
           fill
           sizes="(max-width: 768px) 100vw, 350px"
           className={styles.cardImage}

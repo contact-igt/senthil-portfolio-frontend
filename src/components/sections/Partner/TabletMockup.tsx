@@ -93,7 +93,7 @@ export function TabletMockup() {
         {/* ── Tablet Screen Image of Dr. Senthil ────────────────── */}
         <div className={styles.imageContainer}>
           <Image
-            src="/images/senthilsir2.JPG"
+            src="/images/profile.png"
             alt="Dr. T. Senthil Tamilaraasan"
             fill
             sizes="(max-width: 768px) 100vw, 600px"
