@@ -37,6 +37,17 @@ const RecentCaseStudies = dynamic(
   }
 );
 
+const PARTNERSHIP_IMAGES = [
+  '/images/img1.jpeg',
+  '/images/img2.jpeg',
+  '/images/img3.jpeg',
+  '/images/img4.jpeg',
+  '/images/img5.jpeg',
+  '/images/img6.jpeg',
+  '/images/img7.jpeg',
+
+] as const;
+
 const Partnerships = dynamic(
   () => import('@/components/sections/Partnerships'),
   {
@@ -212,6 +223,7 @@ export default function Home() {
             title: 'Unitus Ventures — Lead Investor, Welcare Health Systems',
             tags: ['Investment', 'HealthTech', 'Impact'],
             graphicVariant: 'freelance',
+            imageSrc: PARTNERSHIP_IMAGES[0],
           },
           {
             id: 'p-2',
@@ -219,6 +231,7 @@ export default function Home() {
             title: 'Unite For Sight — Chennai Chapter Lead & Partner Eye Clinic',
             tags: ['Humanitarian', 'Global Health', 'Community'],
             graphicVariant: 'sofa',
+            imageSrc: PARTNERSHIP_IMAGES[1],
           },
           {
             id: 'p-3',
@@ -226,6 +239,7 @@ export default function Home() {
             title: 'Yale University — Speaker, Unite For Sight Annual Conference',
             tags: ['Speaking', 'International', 'Academia'],
             graphicVariant: 'zoom',
+            imageSrc: PARTNERSHIP_IMAGES[2],
           },
           {
             id: 'p-4',
@@ -233,6 +247,7 @@ export default function Home() {
             title: 'Stanford University — Humanitarian Volunteer of the Year Award',
             tags: ['Recognition', 'Stanford', 'Global'],
             graphicVariant: 'interview',
+            imageSrc: PARTNERSHIP_IMAGES[3],
           },
           {
             id: 'p-5',
@@ -240,6 +255,7 @@ export default function Home() {
             title: 'Duke University — Guest Speaker, Eye Care Innovation',
             tags: ['Speaking', 'Academia', 'Innovation'],
             graphicVariant: 'skills',
+            imageSrc: PARTNERSHIP_IMAGES[4],
           },
           {
             id: 'p-6',
@@ -247,6 +263,7 @@ export default function Home() {
             title: 'AIIMS New Delhi — Host, Ophthall Practice Development Conference',
             tags: ['Conference', 'Leadership', 'National'],
             graphicVariant: 'ai',
+            imageSrc: PARTNERSHIP_IMAGES[0],
           },
           {
             id: 'p-7',
@@ -254,6 +271,7 @@ export default function Home() {
             title: 'CII India — Healthcare Entrepreneur of the Year',
             tags: ['Industry', 'Award', 'Entrepreneurship'],
             graphicVariant: 'figma',
+            imageSrc: PARTNERSHIP_IMAGES[1],
           },
           {
             id: 'p-8',
@@ -261,6 +279,7 @@ export default function Home() {
             title: 'Telemedicine Society of India — Vice President, Tamil Nadu Chapter',
             tags: ['Leadership', 'Telemedicine', 'Tamil Nadu'],
             graphicVariant: 'content',
+            imageSrc: PARTNERSHIP_IMAGES[2],
           },
         ]}
       />
