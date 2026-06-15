@@ -7,6 +7,7 @@
   padding: var(--space-8);
   border-left: 4px solid transparent;
   position: relative;
+  min-width: 0;
 }
 
 .blue {
@@ -24,6 +25,7 @@
   color: var(--color-card-quote);
   line-height: 1.35;
   margin-bottom: var(--space-4);
+  overflow-wrap: anywhere;
 }
 
 .description {
@@ -31,6 +33,13 @@
   font-weight: var(--font-regular);
   color: var(--color-section-subtext);
   line-height: var(--lh-body);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-6);
+  }
 }
 
 .avatarWrap {

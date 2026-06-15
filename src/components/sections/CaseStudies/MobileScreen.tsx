@@ -72,7 +72,7 @@ function DashboardScreen() {
         </svg>
         <span className={styles.headerLabel}>Dashboard</span>
       </div>
-      <p className={styles.dashSub}>all the information you'll manage your business</p>
+      <p className={styles.dashSub}>all the information you&apos;ll manage your business</p>
       
       {/* Central Stats Card */}
       <div className={styles.statsCard}>

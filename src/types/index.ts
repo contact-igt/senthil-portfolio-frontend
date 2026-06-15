@@ -171,11 +171,22 @@ export interface TestimonialsProps {
 
 /* ── Core Values Section ──────────────────────────────────── */
 
+export interface CoreValueMetric {
+  end: number;
+  suffix?: string;
+  prefix?: string;
+  separator?: string;
+  decimals?: number;
+  before?: string;
+  after?: string;
+}
+
 export interface CoreValueData {
   id: string | number;
   title: string;
   description: string;
   icon: 'person' | 'lightbulb' | 'lightning' | 'checkmark';
+  metric?: CoreValueMetric;
 }
 
 export interface CoreValuesProps {
@@ -201,6 +212,32 @@ export interface RecentCaseStudiesProps {
   cases?: CaseStudyData[];
 }
 
+export interface AwardItem {
+  id: string;
+  year: string;
+  issuer: string;
+  title: string;
+  tags?: string[];
+}
+
+export interface AwardsProps {
+  className?: string;
+  heading?: string;
+  subheading?: string;
+  awards?: AwardItem[];
+}
+
+export interface ConsultingProps {
+  className?: string;
+  eyebrow?: string;
+  heading?: string;
+  body?: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
 /* ── Pathway Section ──────────────────────────────────── */
 
 export interface PathwayStep {
@@ -211,6 +248,8 @@ export interface PathwayStep {
   bullets: string[];
   whyNeeded: string[];
   graphicVariant: 'discovery' | 'ux' | 'brand' | 'direction' | 'delivery';
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 export interface PathwayProps {
@@ -246,19 +285,12 @@ export interface FooterLink {
 }
 
 export interface FooterSocialLink {
-  platform: 'linkedin' | 'youtube' | 'twitter' | 'behance';
+  platform: 'linkedin' | 'youtube' | 'twitter' | 'behance' | 'instagram' | 'facebook' | 'website';
   href: string;
   ariaLabel: string;
 }
 
 export interface FooterProps {
-  heading?: string;
-  subtext?: string;
-  ctaLabel?: string;
-  ctaHref?: string;
-  avatarSrc?: string;
-  avatarAlt?: string;
-
   column1Heading?: string;
   column1Links?: FooterLink[];
 

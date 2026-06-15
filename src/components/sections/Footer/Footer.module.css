@@ -1,97 +1,12 @@
-/* ✓ tokens: --color-white, --color-black, --font-family-primary | layout: flex, grid | split: full-page footer with CTA + links + legal bar */
-
-/* ══════════════════════════════════════════════════
-   FOOTER SHELL — jet-black background
-══════════════════════════════════════════════════ */
 .footer {
   background-color: var(--color-black);
   color: var(--color-white);
   font-family: var(--font-family-primary);
-}
-
-/* ══════════════════════════════════════════════════
-   1. CTA SECTION — "Ready to work together?"
-══════════════════════════════════════════════════ */
-.ctaSection {
-  padding: clamp(80px, 11vw, 140px) var(--space-6) clamp(60px, 8vw, 100px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: var(--color-section-bg);
-  border-bottom: 1px solid rgba(0, 47, 66, 0.08);
-}
-
-/* Circular avatar photo */
-.ctaAvatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
   overflow: hidden;
-  margin-bottom: clamp(28px, 4vw, 44px);
-  flex-shrink: 0;
-  background-color: #f0b8b8; /* pink fallback */
 }
 
-.ctaAvatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-
-/* Large display heading */
-.ctaHeading {
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
-  font-weight: var(--font-bold);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--color-black);
-  margin-bottom: clamp(28px, 4vw, 44px);
-  max-width: 700px;
-}
-
-/* Subtext below heading */
-.ctaSubtext {
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
-  color: rgba(0, 47, 66, 0.7);
-  max-width: 650px;
-  margin: 0 auto clamp(28px, 4vw, 44px) auto;
-  line-height: 1.6;
-}
-
-/* Green pill CTA button */
-.ctaButton {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  background-color: var(--color-black);
-  color: #ffffff;
-  font-family: var(--font-family-primary);
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
-  font-weight: var(--font-semibold);
-  padding: 18px 40px;
-  border-radius: 999px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  white-space: nowrap;
-}
-
-.ctaButton:hover {
-  background-color: #00a0e3;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-btn);
-}
-
-/* ══════════════════════════════════════════════════
-   2. LINKS SECTION — 3-column grid
-══════════════════════════════════════════════════ */
 .linksSection {
-  padding: clamp(60px, 7vw, 90px) var(--space-6) clamp(60px, 7vw, 90px);
+  padding: clamp(60px, 7vw, 90px) var(--space-6);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -101,9 +16,9 @@
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
   gap: clamp(40px, 6vw, 80px);
+  min-width: 0;
 }
 
-/* Column heading */
 .colHeading {
   font-size: clamp(1rem, 1.3vw, 1.1rem);
   font-weight: var(--font-semibold);
@@ -112,7 +27,6 @@
   letter-spacing: 0;
 }
 
-/* ── Latest Articles column ── */
 .articleList {
   display: flex;
   flex-direction: column;
@@ -127,6 +41,7 @@
   line-height: 1.5;
   transition: color 0.2s ease;
   padding-bottom: clamp(16px, 2vw, 22px);
+  overflow-wrap: anywhere;
 }
 
 .articleItem:hover {
@@ -139,7 +54,6 @@
   margin-bottom: clamp(16px, 2vw, 22px);
 }
 
-/* ── Have a Browse nav column ── */
 .navList {
   list-style: none;
   display: flex;
@@ -153,6 +67,7 @@
   font-size: clamp(0.9rem, 1.1vw, 1rem);
   line-height: 1.4;
   transition: color 0.2s ease;
+  overflow-wrap: anywhere;
 }
 
 .navLink:hover {
@@ -164,7 +79,6 @@
   font-weight: var(--font-semibold);
 }
 
-/* ── Let's Talk column ── */
 .contactEmail,
 .contactPhone {
   display: block;
@@ -173,6 +87,7 @@
   font-size: clamp(0.9rem, 1.1vw, 1rem);
   line-height: 1.6;
   transition: color 0.2s ease;
+  overflow-wrap: anywhere;
 }
 
 .contactEmail:hover,
@@ -184,9 +99,10 @@
   margin-bottom: clamp(20px, 2.5vw, 28px);
 }
 
-/* Social icon row */
 .socialRow {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: var(--space-3);
   margin-top: var(--space-5);
 }
@@ -216,9 +132,6 @@
   height: 18px;
 }
 
-/* ══════════════════════════════════════════════════
-   3. LEGAL BAR — bottom row
-══════════════════════════════════════════════════ */
 .legalBar {
   padding: clamp(20px, 2.5vw, 28px) var(--space-6);
 }
@@ -230,11 +143,9 @@
   color: rgba(255, 255, 255, 0.3);
   text-align: center;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
-/* ══════════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════════ */
 @media (max-width: 820px) {
   .linksContainer {
     grid-template-columns: 1fr 1fr;
@@ -247,12 +158,22 @@
 }
 
 @media (max-width: 540px) {
+  .linksSection {
+    padding: var(--space-12) var(--space-4);
+  }
+
   .linksContainer {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .ctaHeading {
-    font-size: clamp(2.2rem, 10vw, 3.5rem);
+  .socialRow {
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 360px) {
+  .legalBar {
+    padding-inline: var(--space-4);
   }
 }

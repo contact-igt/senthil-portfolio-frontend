@@ -11,6 +11,7 @@
   justify-content: space-between;
   padding: var(--space-6) var(--space-10);
   width: 100%;
+  min-width: 0;
   transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
   will-change: padding, background, box-shadow, backdrop-filter;
 }
@@ -29,6 +30,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-10);
+  min-width: 0;
 }
 
 .link {
@@ -48,6 +50,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-8);
+  min-width: 0;
 }
 
 /* ── Hamburger Menu Button ── */
@@ -71,8 +74,27 @@
   border-radius: 2px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .nav,
+  .scrolled {
+    padding-inline: var(--space-8);
+  }
+
+  .links {
+    gap: var(--space-6);
+  }
+
+  .navRight {
+    gap: var(--space-5);
+  }
+}
+
+@media (max-width: 900px) {
   .nav {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .scrolled {
     padding: var(--space-4) var(--space-5);
   }
 
@@ -87,13 +109,14 @@
   /* ── Mobile Inset Menu Overlay Card ── */
   .menuOverlay {
     position: fixed;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    border-radius: 28px;
-    padding: var(--space-6) var(--space-6) var(--space-10) var(--space-6);
-    background-color: #002f42;
+    inset: 0;
+    min-height: 100dvh;
+    border-radius: 0;
+    padding:
+      calc(var(--space-6) + env(safe-area-inset-top, 0px))
+      var(--space-6)
+      calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(180deg, #002f42 0%, #003a52 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
     z-index: 1000;
@@ -101,6 +124,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
@@ -139,10 +164,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-6);
+    gap: clamp(12px, 3vh, 22px);
     flex: 1;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: clamp(24px, 5vh, 42px);
+    margin-bottom: clamp(22px, 4vh, 36px);
     padding: 0;
   }
 
@@ -153,7 +178,7 @@
 
   .mobileLink {
     font-family: var(--font-family-primary);
-    font-size: 2rem;
+    font-size: clamp(1.45rem, 5.4vw, 2rem);
     font-weight: var(--font-bold);
     color: #fff;
     text-decoration: none;
@@ -190,10 +215,28 @@
     width: 100%;
     max-width: 280px;
     text-align: center;
+    min-height: 48px;
   }
 
   .mobileCtaButton:hover {
     background-color: #f3ede2;
     transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 390px) {
+  .menuOverlay {
+    padding:
+      calc(var(--space-5) + env(safe-area-inset-top, 0px))
+      var(--space-5)
+      calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobileLinks {
+    gap: var(--space-3);
+  }
+
+  .mobileLink {
+    font-size: clamp(1.28rem, 6vw, 1.55rem);
   }
 }

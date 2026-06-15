@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import type { HeroProps } from '@/types';
 import { Navbar } from '@/components/sections/Navbar';
 import { Button } from '@/components/ui/Button';
@@ -18,7 +19,6 @@ export function Hero({
   ctaHref           = defaultHeroProps.ctaHref,
 }: HeroProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -43,27 +43,12 @@ export function Hero({
         y: 16, opacity: 0, duration: 0.5, ease: 'power2.out',
       }, '-=0.3')
       .from(`.${styles.personImage}`, {
-        y: 60, opacity: 0, duration: 0.8, ease: 'power3.out',
+        opacity: 0, duration: 0.8, ease: 'power3.out',
       }, '-=0.6');
 
-      // Parallax on image on scroll
-      if (imageRef.current) {
-        gsap.to(imageRef.current, {
-          yPercent: -12,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
-
-      // Hero content fades out as user scrolls away
-      gsap.to(`.${styles.content}`, {
+      // Hero copy and portrait fade out together as the next section enters.
+      gsap.to([`.${styles.content}`, `.${styles.visual}`], {
         opacity: 0,
-        y: -30,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -81,37 +66,40 @@ export function Hero({
     <header ref={sectionRef} className={styles.hero}>
       <HeroParticles />
       <Navbar />
+      <div className={styles.heroInner}>
+        <div className={styles.content}>
+          <h1 className={styles.heading}>
+            <span className={styles.headingLine1}>{heading1}</span>
+            <br />
+            <span className={styles.headingLine2}>{heading2Prefix}</span>
+            <span className={styles.highlightLine}>
+              {/* Pink highlight = CSS background on <span>, NOT text-decoration */}
+              <span className={styles.highlight}>{heading2Highlight}</span>
+            </span>
+          </h1>
 
-      {/* Person image — absolute positioned left/bottom */}
-      {/* <Image
-        ref={imageRef}
-        src="/images/hero-person.png"
-        alt="Dr. Senthil — Ophthalmologist & Healthcare Entrepreneur"
-        width={420}
-        height={560}
-        className={styles.personImage}
-        priority={true}
-      /> */}
+          <p className={styles.subtext}>{subtext}</p>
 
-      <div className={styles.content}>
-        <h1 className={styles.heading}>
-          <span className={styles.headingLine1}>{heading1}</span>
-          <br />
-          <span className={styles.headingLine2}>{heading2Prefix}</span>
-          <span className={styles.highlightLine}>
-            {/* Pink highlight = CSS background on <span>, NOT text-decoration */}
-            <span className={styles.highlight}>{heading2Highlight}</span>
-          </span>
-        </h1>
+          <div className={styles.ctaWrap}>
+            <Button variant="primary" size="lg" href={ctaHref} className={styles.heroBtn}>
+              {ctaLabel}
+            </Button>
+            {/* Vertical divider line below CTA */}
+            <div className={styles.divider} aria-hidden="true" />
+          </div>
+        </div>
 
-        <p className={styles.subtext}>{subtext}</p>
-
-        <div className={styles.ctaWrap}>
-          <Button variant="primary" size="lg" href={ctaHref} className={styles.heroBtn}>
-            {ctaLabel}
-          </Button>
-          {/* Vertical divider line below CTA */}
-          <div className={styles.divider} aria-hidden="true" />
+        <div className={styles.visual}>
+          <div className={styles.portraitFrame}>
+            <Image
+              src="/images/profile.png"
+              alt="Dr. Senthil, ophthalmologist and healthcare entrepreneur"
+              width={520}
+              height={520}
+              className={styles.personImage}
+              priority={true}
+            />
+          </div>
         </div>
       </div>
 

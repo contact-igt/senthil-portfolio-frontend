@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import type { CoreValuesProps, CoreValueData } from '@/types';
+import CountUp from 'react-countup';
+import type { CoreValuesProps, CoreValueData, CoreValueMetric } from '@/types';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { gsap } from '@/lib/animations';
-import { animateCountUp } from '@/lib/countUp';
 import styles from './CoreValues.module.css';
 
 /* ── SVG Icon Components ── */
@@ -82,57 +82,64 @@ const DEFAULT_VALUES: CoreValueData[] = [
   },
 ];
 
+function formatMetricValue(value: number, separator: string, decimals: number) {
+  if (decimals > 0) {
+    return value.toFixed(decimals);
+  }
+
+  const rounded = Math.round(value);
+  if (separator === ',') {
+    return rounded.toLocaleString('en-US');
+  }
+
+  return String(rounded);
+}
+
+function MetricTitle({ metric, fallbackTitle }: { metric?: CoreValueMetric; fallbackTitle: string }) {
+  if (!metric) {
+    return <>{fallbackTitle}</>;
+  }
+
+  const {
+    end,
+    suffix = '',
+    prefix = '',
+    separator = ',',
+    decimals = 0,
+  } = metric;
+  const finalText = prefix + formatMetricValue(end, separator, decimals) + suffix;
+
+  return (
+    <>
+      {metric.before}
+      <CountUp
+        start={0}
+        end={end}
+        duration={1.8}
+        decimals={decimals}
+        prefix={prefix}
+        suffix={suffix}
+        separator={separator}
+        className={styles.metricNumber}
+        enableScrollSpy
+        scrollSpyOnce
+        preserveValue
+        containerProps={{
+          'aria-label': finalText,
+          suppressHydrationWarning: true,
+        }}
+      />
+      {metric.after}
+    </>
+  );
+}
+
 export function CoreValues({
   heading = 'Core values used for every design project',
   subtext = 'The output of my design is based on these principles',
   values = DEFAULT_VALUES,
 }: CoreValuesProps) {
-
-  // Dynamically parses and wraps numbers for the count-up animation
-  const renderTitle = (title: string) => {
-    const match = title.match(/([0-9,]+)(\+)?/);
-    if (match) {
-      const numberStr = match[1];
-      const rawNumber = parseInt(numberStr.replace(/,/g, ''), 10);
-      const suffix = match[2] || '';
-      const parts = title.split(match[0]);
-      return (
-        <>
-          {parts[0]}
-          <span
-            data-animate="count-number"
-            data-target={rawNumber}
-            data-suffix={suffix}
-          >
-            0
-          </span>
-          {suffix}
-          {parts[1]}
-        </>
-      );
-    }
-    
-    // Fallback for "Half the Cost" -> Animate 50%
-    if (title.toLowerCase().includes('half the cost')) {
-      return (
-        <>
-          Under{' '}
-          <span
-            data-animate="count-number"
-            data-target={50}
-            data-suffix="%"
-          >
-            0
-          </span>
-          % the Cost of Conventional Care
-        </>
-      );
-    }
-    return title;
-  };
-
   const ref = useScrollAnimation<HTMLElement>((container) => {
-    // Header reveal
     gsap.from(container.querySelector('[data-animate="core-header"]'), {
       y: 40,
       opacity: 0,
@@ -145,7 +152,6 @@ export function CoreValues({
       },
     });
 
-    // Cards stagger
     gsap.from(container.querySelectorAll('[data-animate="core-card"]'), {
       y: 45,
       opacity: 0,
@@ -158,27 +164,12 @@ export function CoreValues({
         toggleActions: 'play none none none',
       },
     });
-
-    // Count up numbers
-    const numberEls = container.querySelectorAll('[data-animate="count-number"]');
-    numberEls.forEach((el) => {
-      const target = parseInt(el.getAttribute('data-target') || '0', 10);
-      const suffix = el.getAttribute('data-suffix') || '';
-      
-      animateCountUp(el, { target, suffix, duration: 1.8 }, {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none',
-      });
-    });
   });
 
   return (
     <section ref={ref} id="impact" className={styles.section} aria-labelledby="core-values-heading">
-      {/* Curved cream panel — same technique as Testimonials section */}
       <div className={styles.curvedPanel}>
         <div className={styles.container}>
-          {/* Section header */}
           <header className={styles.header} data-animate="core-header">
             <h2 id="core-values-heading" className={styles.heading}>
               {heading}
@@ -188,9 +179,8 @@ export function CoreValues({
             </p>
           </header>
 
-          {/* 2×2 grid of value cards */}
           <div className={styles.grid}>
-            {values.map(({ id, title, description, icon }) => {
+            {values.map(({ id, title, description, icon, metric }) => {
               const IconComponent = iconMap[icon] || UserIcon;
               return (
                 <article key={id} className={styles.card} data-animate="core-card">
@@ -198,7 +188,9 @@ export function CoreValues({
                     <IconComponent />
                   </div>
                   <div className={styles.cardContent}>
-                    <h3 className={styles.cardTitle}>{renderTitle(title)}</h3>
+                    <h3 className={styles.cardTitle}>
+                      <MetricTitle metric={metric} fallbackTitle={title} />
+                    </h3>
                     <p className={styles.cardDescription}>{description}</p>
                   </div>
                 </article>

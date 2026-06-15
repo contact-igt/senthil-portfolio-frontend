@@ -82,11 +82,11 @@ export function FloatingChat() {
       {/* Interactive Rotating Outer Dotted Ring */}
       <div className={styles.dottedRing} aria-hidden="true" />
       
-      {/* Solid Inner Yellow Contact Button */}
+      {/* Solid Inner Scheduling Button */}
       <button 
         type="button" 
         className={styles.yellowBtn} 
-        aria-label="Open Contact Chat"
+        aria-label="Book a session"
         onClick={() => {
           // Placeholder click action (e.g. scroll to footer/contact or open form)
           const contactSection = document.getElementById('contact');
@@ -97,24 +97,23 @@ export function FloatingChat() {
           }
         }}
       >
-        {/* Custom High-Fidelity Speech Bubble SVG */}
+        {/* Calendly-style scheduling icon */}
         <svg 
-          width="26" 
-          height="26" 
+          width="27" 
+          height="27" 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="var(--color-black)" 
-          strokeWidth="2" 
+          strokeWidth="2.1" 
           strokeLinecap="round" 
           strokeLinejoin="round"
           aria-hidden="true"
         >
-          {/* Main bubble shape */}
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-          
-          {/* Subtle triple indicator lines inside */}
-          <line x1="9" y1="10" x2="15" y2="10" strokeWidth="1.8" />
-          <line x1="9" y1="14" x2="13" y2="14" strokeWidth="1.8" />
+          <rect x="4" y="5" width="16" height="15" rx="3" />
+          <path d="M8 3v4" />
+          <path d="M16 3v4" />
+          <path d="M4 10h16" />
+          <path d="M8.4 14.2l2.1 2.1 5.1-5.1" />
         </svg>
       </button>
 

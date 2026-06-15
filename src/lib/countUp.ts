@@ -1,4 +1,4 @@
-import { gsap } from '@/lib/animations';
+import { gsap, ScrollTrigger } from '@/lib/animations';
 
 interface CountUpOptions {
   target: number;      // end value (e.g. 500000)
@@ -11,7 +11,7 @@ interface CountUpOptions {
 export function animateCountUp(
   element: Element,
   options: CountUpOptions,
-  scrollTrigger: any
+  scrollTrigger: ScrollTrigger.Vars
 ) {
   const { target, suffix = '', prefix = '', duration = 2, decimals = 0 } = options;
   const obj = { val: 0 };

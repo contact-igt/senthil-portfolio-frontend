@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import type { PathwayStep } from '@/types';
 import styles from './Pathway.module.css';
 import {
@@ -33,7 +34,19 @@ export function PathwayCard({ step, isLast }: PathwayCardProps) {
     <div className={styles.step}>
       {/* Left — visual mockup */}
       <div className={styles.stepLeft}>
-        <Graphic />
+        {step.imageSrc ? (
+          <div className={`${styles.mockupCard} ${styles.ventureImageCard}`}>
+            <Image
+              src={step.imageSrc}
+              alt={step.imageAlt ?? step.title}
+              fill
+              sizes="220px"
+              className={styles.ventureImage}
+            />
+          </div>
+        ) : (
+          <Graphic />
+        )}
       </div>
 
       {/* Centre — step badge */}
