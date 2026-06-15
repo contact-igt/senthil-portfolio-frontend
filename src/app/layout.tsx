@@ -1,10 +1,11 @@
-// ✓ tokens: --font-family-primary via Manrope next/font/google | layout: root layout | split: font setup + metadata
-
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/sections/Footer';
+import { BookConsultation } from '@/components/sections/BookConsultation';
+import { ReadyConsultation } from '@/components/sections/ReadyConsultation';
 import { ScrollRefresh } from '@/components/ui/ScrollRefresh';
+import { navLinks, navCtaHref } from '@/lib/content';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -15,9 +16,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'Dr. Senthil Tamilarasan — Ophthalmologist & Healthcare Entrepreneur',
+  title: 'Dr. Senthil Tamilarasan - Ophthalmologist & Healthcare Entrepreneur',
   description:
-    'Dr. T. Senthil Tamilaraasan — Founder of Ophthall, Healthcare Business Strategist, and Speaker. Helping eye hospitals scale sustainably through practice development, mentoring, and innovation.',
+    'Dr. T. Senthil Tamilaraasan - Founder of Ophthall, Healthcare Business Strategist, and Speaker. Helping eye hospitals scale sustainably through practice development, mentoring, and innovation.',
 };
 
 export default function RootLayout({
@@ -30,41 +31,40 @@ export default function RootLayout({
       <body>
         <ScrollRefresh />
         {children}
+        <ReadyConsultation
+          ctaHref={navCtaHref}
+          socialLinks={[
+            { platform: 'instagram', href: 'https://www.instagram.com/senthilophthall/', ariaLabel: 'Instagram - @senthilophthall' },
+            { platform: 'youtube', href: 'https://www.youtube.com/channel/UCi6QnPo-NBCNrUasqnlx__Q', ariaLabel: 'YouTube - Dr. Senthil Speaks' },
+            { platform: 'linkedin', href: 'https://www.linkedin.com/in/dr-tamilarasan-senthil-b4b7b32/', ariaLabel: 'LinkedIn' },
+            { platform: 'facebook', href: 'https://www.facebook.com/ophthall', ariaLabel: 'Facebook - Ophthall' },
+          ]}
+        />
+        <BookConsultation />
         <Footer
-          heading="Ready to Transform Your Practice?"
-          subtext="Whether you are an ophthalmologist looking to scale, a hospital seeking strategy, or an organiser planning an event — let's connect."
-          ctaLabel="Book a Session"
-          ctaHref="mailto:senthil@ophthall.in"
-          avatarSrc="/images/senthilsir5.JPG"
-          avatarAlt="Dr. T. Senthil Tamilaraasan"
-          
           column1Heading="Latest Talks"
           column1Links={[
-            { label: 'YouTube — Dr. Senthil Speaks', href: 'https://www.youtube.com/channel/UCi6QnPo-NBCNrUasqnlx__Q' },
+            { label: 'YouTube - Dr. Senthil Speaks', href: 'https://www.youtube.com/channel/UCi6QnPo-NBCNrUasqnlx__Q' },
             { label: 'LinkedIn Articles', href: 'https://www.linkedin.com/pulse/thinking-out-box-medicine-dr-tamilarasan-senthil' },
           ]}
-          
           column2Heading="Explore"
           column2Links={[
-            { label: 'About',              href: '#about' },
-            { label: 'Ventures',           href: '#ventures' },
-            { label: 'Impact',             href: '#impact' },
-            { label: 'Partnerships',       href: '#partnerships' },
-            { label: 'Resources',          href: '#resources' },
-            { label: 'Book a Session',     href: 'mailto:senthil@ophthall.in' },
-            { label: 'Ophthall Website',   href: 'https://www.ophthall.co.in' },
+            ...navLinks,
+            { label: 'Book a Session', href: navCtaHref },
+            { label: 'Ophthall Website', href: 'https://www.ophthall.co.in' },
             { label: 'Ophthall Community', href: 'https://www.ophthall.in' },
           ]}
-          
           column3Heading="Let's Talk"
           email="senthil@ophthall.in"
           phone=""
           socialLinks={[
+            { platform: 'instagram', href: 'https://www.instagram.com/senthilophthall/', ariaLabel: 'Instagram - @senthilophthall' },
+            { platform: 'youtube', href: 'https://www.youtube.com/channel/UCi6QnPo-NBCNrUasqnlx__Q', ariaLabel: 'YouTube - Dr. Senthil Speaks' },
             { platform: 'linkedin', href: 'https://www.linkedin.com/in/dr-tamilarasan-senthil-b4b7b32/', ariaLabel: 'LinkedIn' },
-            { platform: 'youtube',  href: 'https://www.youtube.com/channel/UCi6QnPo-NBCNrUasqnlx__Q',   ariaLabel: 'YouTube' },
+            { platform: 'facebook', href: 'https://www.facebook.com/ophthall', ariaLabel: 'Facebook - Ophthall' },
+            { platform: 'website', href: 'https://www.ophthall.co.in', ariaLabel: 'Ophthall Website' },
           ]}
-          
-          legalText="Dr. T. Senthil Tamilaraasan · Ophthalmologist · Healthcare Entrepreneur · Founder, Ophthall · Chennai, India · senthil@ophthall.in · www.ophthall.in"
+          legalText="Dr. T. Senthil Tamilaraasan - Ophthalmologist - Healthcare Entrepreneur - Founder, Ophthall - Chennai, India - senthil@ophthall.in - www.ophthall.in"
         />
       </body>
     </html>

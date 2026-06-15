@@ -1,6 +1,7 @@
 // ✓ tokens: none | layout: composition | split: main Pathway section with default 5-step data
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import type { PathwayStep, PathwayProps } from '@/types';
 import styles from './Pathway.module.css';
 import { PathwayCard } from './PathwayCard';
@@ -264,7 +265,19 @@ export default function Pathway({
                     className={`${styles.accordionPanel} ${isOpen ? styles.accordionPanelExpanded : ''}`}
                   >
                     <div className={styles.accordionGraphicWrapper}>
-                      <Graphic />
+                      {step.imageSrc ? (
+                        <div className={`${styles.mockupCard} ${styles.ventureImageCard}`}>
+                          <Image
+                            src={step.imageSrc}
+                            alt={step.imageAlt ?? step.title}
+                            fill
+                            sizes="220px"
+                            className={styles.ventureImage}
+                          />
+                        </div>
+                      ) : (
+                        <Graphic />
+                      )}
                     </div>
                     <div className={styles.accordionTextContent}>
                       <p className={styles.stepDescription}>{step.description}</p>

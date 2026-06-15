@@ -1,1 +1,1 @@
-export { default } from './CoreValues';
+export { CoreValues, default } from './CoreValues';

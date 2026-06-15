@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { gsap } from '@/lib/animations';
@@ -10,115 +10,98 @@ import { ReviewData } from '@/types';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-/* ── Authentic Multi-Colored Vector Google 'G' Logo SVG ──── */
-function GoogleLogo() {
+/* LinkedIn source icon */
+function LinkedInLogo() {
   return (
     <svg
       width="22"
       height="22"
       viewBox="0 0 24 24"
-      fill="none"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <path
-        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-        fill="#4285F4"
-      />
-      <path
-        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-        fill="#34A853"
-      />
-      <path
-        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.66-.35-1.36-.35-2.09z"
-        fill="#FBBC05"
-      />
-      <path
-        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
-        fill="#EA4335"
-      />
+      <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.99h3.42v1.57h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.42a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.03H3.53V8.99H7.1v11.46zM22.23 0H1.76C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.76 24h20.47c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0z" />
     </svg>
   );
 }
 
-/* ── Five Gold Stars SVG Renderer ────────────────────────── */
-function GoldStars({ rating }: { rating: number }) {
-  return (
-    <div className={styles.starRow}>
-      {Array.from({ length: 5 }).map((_, idx) => (
-        <svg
-          key={idx}
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill={idx < rating ? 'var(--color-rating-star)' : 'none'}
-          stroke={idx < rating ? 'var(--color-rating-star)' : '#D0D0D0'}
-          strokeWidth="1.5"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
+/* LinkedIn endorsement source label */
+const ENDORSEMENT_LABEL = 'LinkedIn endorsement';
 
-/* ── Pre-defined Realistic Google Reviews Data ───────────── */
+/* Pre-defined LinkedIn endorsement data */
 const DEFAULT_REVIEWS: ReviewData[] = [
   {
     id: 'rev-1',
-    name: 'Carlo Cest',
-    date: 'February 27, 2026',
-    avatarInitials: 'CC',
-    avatarColor: '#5D4037', // Deep Brown
+    name: 'Elankumaran Pasupathi',
+    date: 'July 15, 2018',
+    avatarInitials: 'EP',
+    avatarColor: '#5D4037',
     rating: 5,
-    text: 'Amazing to work with, highly recommend to anyone wanting a website and a rebrand. Easy to work alongside and very experienced in his field.',
+    text: 'A good ophthalmologist, very good entrepreneur and an excellent human being',
   },
   {
     id: 'rev-2',
-    name: 'David Walker',
-    date: 'February 26, 2026',
-    avatarInitials: 'DW',
-    avatarColor: '#1E88E5', // Deep Blue
+    name: 'Nabil Barsom',
+    date: 'December 5, 2014',
+    avatarInitials: 'NB',
+    avatarColor: '#1E88E5',
     rating: 5,
-    text: "As a developer, I've really enjoyed collaborating with Rich. We've worked closely across a range of projects, from simple one-page sites to full e-commerce builds. He's approachable, communicates openly, and actively fosters strong collaboration between design and development. That partnership consistently leads to smooth workflows and high-quality results.",
+    text: 'Hi Dr.Tamilarasan, I wrote this recommendation of your work that you can include on your profile. Thanks, also i need you to help me to learn phaco and lasik',
   },
   {
     id: 'rev-3',
-    name: 'Raymond',
-    date: 'February 25, 2026',
-    avatarInitials: 'R',
-    avatarColor: '#2E7D32', // Dark Green
+    name: 'Nagarajan Vadivel',
+    date: 'September 15, 2008',
+    avatarInitials: 'NV',
+    avatarColor: '#2E7D32',
     rating: 5,
-    text: 'Richard has excellent attention to detail and gets deeply involved in UX design projects. Hiring an independent expert at that time was far more effective for us than going through a typical big agency.',
+    text: 'Dr.Tamilarasan is a highly competent professional with service orientation',
   },
   {
     id: 'rev-4',
-    name: 'David Fortiscue',
-    date: 'February 20, 2026',
-    avatarInitials: 'DF',
-    avatarColor: '#0288D1', // Cyan/Light Blue
+    name: 'Sathish Isaac',
+    date: 'June 17, 2008',
+    avatarInitials: 'SI',
+    avatarColor: '#0288D1',
     rating: 5,
-    text: "I worked with Richard to develop our SaaS platform's brand and UX. He delivered a robust product layout which ensured our users have a flexible, high-converting, and premium experience. It was a pleasure to work with him.",
+    text: 'Dr.Tamilarasan Senthil is a very talented multi skillful Doctor with immense marketing skill. He was in charge of medical tourism promotion for one of my client and he was diligent and was responsible in bringing worlds TOP NGO in eye care to India. Isaac http://www.jasfy.com',
   },
   {
     id: 'rev-5',
-    name: 'Carla Castillo',
-    date: 'February 19, 2026',
-    avatarInitials: 'CC',
-    avatarColor: '#E65100', // Vibrant Orange
+    name: 'Alyssa Wostrel',
+    date: 'June 16, 2008',
+    avatarInitials: 'AW',
+    avatarColor: '#E65100',
     rating: 5,
-    text: "Highly recommend working with Richard. He completely redesigned our startup's landing page and customer portal, creating a beautiful design that increased signups by 40% in the first month.",
+    text: 'Dr. Tamilarasan is an excellent teacher and mentor to the Unite for Sight medical volunteers at Uma Eye Clinic in Chennai, India, and at the mobile eye camps in the surrounding areas and villages. I enjoyed working with him at the eye camps because I earned a great deal about the healthcare delivery system in India.',
   },
   {
     id: 'rev-6',
-    name: 'Jack Major',
-    date: 'February 19, 2026',
-    avatarInitials: 'JM',
-    avatarColor: '#00695C', // Teal
+    name: 'Anurag Shrivastava, MD',
+    date: 'June 13, 2008',
+    avatarInitials: 'AS',
+    avatarColor: '#00695C',
     rating: 5,
-    text: 'It was great to work with Richard on our new app. He has an incredible eye for clean, modern interfaces and has really helped us define our digital design language.',
+    text: 'Dr. Tamilarasan is an excellent surgeon/physician, whose humanitarian efforts along with strong teaching skills, makes him a true asset to the field of ophthalmology. He is a trusted resource, and a wonderful international contact in the field. I look forward to working with Dr. Tamilarasan for many years to come.',
+  },
+  {
+    id: 'rev-7',
+    name: 'Kathirvel Natarajan',
+    date: 'June 13, 2008',
+    avatarInitials: 'KN',
+    avatarColor: '#6A1B9A',
+    rating: 5,
+    text: 'Dr Senthil comes up with lot of innovative ideas for healthcare marketing and practice promotion. We worked together on a Medical Tourism project and put up a great show in Singapore. He is very insightful about the various developments that takes place in Healthcare delivery market.',
+  },
+  {
+    id: 'rev-8',
+    name: 'Vivek Shukla',
+    date: 'June 10, 2008',
+    avatarInitials: 'VS',
+    avatarColor: '#455A64',
+    rating: 5,
+    text: 'Dr Senthil, thinks unlike many other doctors I have met. He is objective and visionary in his thinking. Besides, he is a keen observer and a quick learner. I know he will go a long way ahead in his career.',
   },
 ];
 
@@ -154,8 +137,8 @@ export function Testimonials() {
   });
 
   // Split reviews and duplicate to ensure gap-free infinite scrolling
-  const row1Reviews = [...DEFAULT_REVIEWS.slice(0, 3), ...DEFAULT_REVIEWS.slice(0, 3)];
-  const row2Reviews = [...DEFAULT_REVIEWS.slice(3, 6), ...DEFAULT_REVIEWS.slice(3, 6)];
+  const row1Reviews = [...DEFAULT_REVIEWS.slice(0, 4), ...DEFAULT_REVIEWS.slice(0, 4)];
+  const row2Reviews = [...DEFAULT_REVIEWS.slice(4, 8), ...DEFAULT_REVIEWS.slice(4, 8)];
 
   // Marquee setting constants
   const baseSettings = {
@@ -203,7 +186,7 @@ export function Testimonials() {
   const renderReviewCard = (review: ReviewData, uniqueId: string) => (
     <div key={uniqueId} className={styles.cardContainer}>
       <div className={styles.card}>
-        {/* Top Row: User Avatar details and G Logo */}
+        {/* Top Row: User avatar details and LinkedIn source */}
         <div className={styles.cardHeader}>
           <div className={styles.userInfo}>
             <div
@@ -218,13 +201,13 @@ export function Testimonials() {
             </div>
           </div>
           <div className={styles.gLogo}>
-            <GoogleLogo />
+            <LinkedInLogo />
           </div>
         </div>
 
-        {/* Rating Stars inside card */}
+        {/* Source label inside card */}
         <div className={styles.cardStars}>
-          <GoldStars rating={review.rating} />
+          <span>{ENDORSEMENT_LABEL}</span>
         </div>
 
         {/* Review Quote text */}
@@ -234,22 +217,21 @@ export function Testimonials() {
   );
 
   return (
-    <section ref={ref} className={styles.section} aria-label="Customer Reviews">
+    <section ref={ref} className={styles.section} aria-label="LinkedIn endorsements">
       <div className={styles.curvedPanel}>
         <div className={styles.container}>
           
           {/* Centered Heading */}
           <h2 className={styles.heading} data-animate="test-header">
-            Trusted by Ophthalmologists & Eye Care Leaders
+             Endorsements from Healthcare Leaders
           </h2>
 
-          {/* Centered Google Summary Rating Row */}
+          {/* Centered LinkedIn source row */}
           <div className={styles.ratingRow} data-animate="test-header">
-            <span className={styles.ratingBold}>5.0</span>
-            <GoldStars rating={5} />
-            <span className={styles.ratingText}>Rated by clients on Google</span>
+            {/* <span className={styles.ratingBold}>8</span> */}
+            <span className={styles.ratingText}>professional recommendations from LinkedIn</span>
             <div className={styles.logoWrap}>
-              <GoogleLogo />
+              <LinkedInLogo />
             </div>
           </div>
 

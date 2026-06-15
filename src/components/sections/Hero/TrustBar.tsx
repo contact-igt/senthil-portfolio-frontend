@@ -60,7 +60,7 @@ function GoogleLogo() {
 }
 
 export function TrustBar({
-  label = '600+ Eye Hospitals',
+  label = '6000+ Eye Hospitals',
   rating = '4.9',
   ratingSource = 'Ophthall Network',
 }: TrustBarProps) {

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { gsap } from '@/lib/animations';
 import { PartnershipCard } from './PartnershipCard';
@@ -82,18 +83,57 @@ const DEFAULT_ITEMS: PartnershipItem[] = [
   },
 ];
 
-const FILTERS = ['All', 'Advice', 'Design', 'Freelance', 'AI'];
+const SPEAKING_BODY = [
+  'Dr. Senthil is a sought-after speaker, trainer, and educator who has delivered keynote talks, workshops, and training programs for doctors, hospitals, healthcare teams, and professional associations across India.',
+  'His sessions combine practical healthcare management, leadership, patient psychology, communication, business strategy, and practice growth insights that are rarely taught in medical school. Through conferences, masterclasses, and customized hospital training programs, he has empowered thousands of healthcare professionals to build better practices, stronger teams, enhanced patient experiences, and sustainable healthcare organizations.',
+];
+
+const SPEAKING_HIGHLIGHTS = [
+  'speaker',
+  'trainer',
+  'educator',
+  'keynote talks',
+  'workshops',
+  'training programs',
+  'doctors',
+  'hospitals',
+  'healthcare teams',
+  'practical healthcare management',
+  'leadership',
+  'patient psychology',
+  'communication',
+  'business strategy',
+  'practice growth insights',
+  'conferences',
+  'masterclasses',
+  'customized hospital training programs',
+  'thousands of healthcare professionals',
+  'better practices',
+  'stronger teams',
+  'enhanced patient experiences',
+  'sustainable healthcare organizations',
+];
+
+function renderSpeakingText(text: string) {
+  const pattern = new RegExp(`(${SPEAKING_HIGHLIGHTS.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
+
+  return text.split(pattern).map((part, index) => {
+    const isHighlighted = SPEAKING_HIGHLIGHTS.some((term) => term.toLowerCase() === part.toLowerCase());
+
+    return isHighlighted ? (
+      <span key={`${part}-${index}`} className={styles.speakingHighlight}>
+        {part}
+      </span>
+    ) : (
+      part
+    );
+  });
+}
 
 export function Partnerships({
-  heading = 'Partnerships & Affiliations',
+  heading = 'Speaking / Training',
   items = DEFAULT_ITEMS,
 }: PartnershipsProps) {
-  const [activeFilter, setActiveFilter] = useState('All');
-
-  const filteredItems = activeFilter === 'All'
-    ? items
-    : items.filter(item => item.tags.includes(activeFilter));
-
   const ref = useScrollAnimation<HTMLElement>((container) => {
     // Header reveal
     const headerEls = container.querySelectorAll('[data-animate="header"]');
@@ -112,19 +152,16 @@ export function Partnerships({
       });
     }
 
-    // Filter bar entrance
-    const filterEls = container.querySelectorAll('[data-animate="filter-pill"]');
-    const filterTrigger = container.querySelector('.' + styles.filterBar);
-    if (filterEls.length && filterTrigger) {
-      gsap.from(filterEls, {
-        y: 15,
+    const intro = container.querySelector('[data-animate="speaking-intro"]');
+    if (intro) {
+      gsap.from(intro, {
+        y: 36,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.05,
+        duration: 0.8,
         ease: 'power2.out',
         scrollTrigger: {
-          trigger: filterTrigger,
-          start: 'top 85%',
+          trigger: intro,
+          start: 'top 84%',
           toggleActions: 'play none none none',
         },
       });
@@ -165,10 +202,10 @@ export function Partnerships({
         },
       });
     }
-  }, [activeFilter]);
+  });
 
   return (
-    <section ref={ref} id="partnerships" className={styles.section} aria-labelledby="partnerships-heading">
+    <section ref={ref} id="speaking-training" className={styles.section} aria-labelledby="partnerships-heading">
       <div className={styles.curvedPanel}>
         <div className={styles.container}>
           {/* Section Header */}
@@ -176,23 +213,35 @@ export function Partnerships({
             {heading}
           </h2>
 
-          {/* Filter Navigation Bar */}
-          <div className={styles.filterBar}>
-            {FILTERS.map((filter) => (
-              <button
-                key={filter}
-                className={`${styles.filterPill} ${activeFilter === filter ? styles.active : ''}`}
-                onClick={() => setActiveFilter(filter)}
-                data-animate="filter-pill"
-              >
-                {filter}
-              </button>
-            ))}
+          <div className={styles.speakingIntro} data-animate="speaking-intro">
+            <div className={styles.speakingVisual}>
+              <div className={styles.speakingImageFrame}>
+                <Image
+                  src="/images/img8.jpeg"
+                  alt="Dr. Senthil delivering a healthcare training session"
+                  fill
+                  sizes="(max-width: 992px) 100vw, 42vw"
+                  className={styles.speakingImage}
+                />
+              </div>
+            </div>
+
+            <div className={styles.speakingCopy}>
+              <h3 className={styles.speakingHeading}>
+                Practical training for doctors, teams, and healthcare leaders
+              </h3>
+              {SPEAKING_BODY.map((paragraph) => (
+                <p key={paragraph}>{renderSpeakingText(paragraph)}</p>
+              ))}
+              <a className={styles.speakingButton} href="mailto:senthil@ophthall.in">
+                Book a Speaking Slot
+              </a>
+            </div>
           </div>
 
           {/* Card Grid */}
           <div className={styles.grid}>
-            {filteredItems.map((item) => (
+            {items.map((item) => (
               <div key={item.id} data-animate="partnership-card">
                 <PartnershipCard data={item} />
               </div>

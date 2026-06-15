@@ -129,7 +129,7 @@ export function Partner({
   });
 
   return (
-    <section ref={ref} id="about" className={styles.section} aria-labelledby="partner-section-heading">
+    <section ref={ref} id="consulting" className={styles.section} aria-labelledby="partner-section-heading">
       <div className={styles.container}>
         
         {/* Centered Title & Subtitle */}

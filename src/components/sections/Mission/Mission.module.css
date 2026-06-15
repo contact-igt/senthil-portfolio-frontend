@@ -33,6 +33,7 @@
   text-align: center;
   margin: 0;
   user-select: none;
+  overflow-wrap: balance;
 }
 
 .greenHighlight {
@@ -141,12 +142,34 @@
   .yellowTriangle {
     top: 30px;
     right: 20px;
-    scale: 0.7;
+    transform: scale(0.7) rotate(15deg);
   }
 
   .concentricCircles {
     scale: 0.6;
     transform: translateY(-50%) translateX(-40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .subtext {
+    font-size: 0.98rem;
+  }
+
+  .yellowTriangle {
+    opacity: 0.65;
+  }
+
+  .concentricCircles {
+    opacity: 0.35;
   }
 }
 

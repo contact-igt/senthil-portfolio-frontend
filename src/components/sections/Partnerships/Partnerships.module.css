@@ -2,7 +2,7 @@
 
 .section {
   position: relative;
-  background-color: #f3ede2;
+  background-color: var(--color-section-bg);
   /* Dark outer so the white curved panel stands out */
   color: var(--color-black);
   overflow: hidden;
@@ -20,9 +20,10 @@
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1260px;
   margin: 0 auto;
   padding: 0 var(--space-6);
+  min-width: 0;
 }
 
 .heading {
@@ -32,8 +33,9 @@
   line-height: var(--lh-heading);
   letter-spacing: var(--ls-heading);
   color: var(--color-black);
-  margin-bottom: var(--space-20);
+  margin-bottom: clamp(48px, 6vw, 76px);
   text-align: center;
+  overflow-wrap: balance;
 }
 
 /* ── Filter Navigation Bar ── */
@@ -79,9 +81,98 @@
 }
 
 /* ── Card Grid ── */
+.speakingIntro {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 4.5vw, 64px);
+  align-items: center;
+  margin-bottom: clamp(56px, 7vw, 88px);
+  padding-bottom: clamp(44px, 6vw, 68px);
+  border-bottom: 1px solid rgba(0, 47, 66, 0.1);
+}
+
+.speakingCopy {
+  display: flex;
+  max-width: 760px;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.speakingHeading {
+  margin: 0;
+  color: var(--color-black);
+  font-size: clamp(2.4rem, 4vw, 2.8rem);
+  font-weight: var(--font-regular);
+  line-height: 1.08;
+  letter-spacing: 0;
+  overflow-wrap: balance;
+}
+
+.speakingCopy p {
+  margin: clamp(28px, 4vw, 42px) 0 0;
+  color: rgba(0, 47, 66, 0.84);
+  font-size: clamp(1.12rem, 1.45vw, 1.42rem);
+  font-weight: var(--font-regular);
+  line-height: 1.5;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.speakingCopy p + p {
+  margin-top: var(--space-5);
+}
+
+.speakingHighlight {
+  color: var(--color-brand-blue);
+  font-weight: var(--font-bold);
+}
+
+.speakingButton {
+  display: inline-flex;
+  min-height: 54px;
+  margin-top: clamp(34px, 4vw, 48px);
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 1.04rem;
+  font-weight: var(--font-bold);
+  line-height: 1;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.speakingButton:hover {
+  background: var(--color-brand-blue);
+  transform: translateY(-2px);
+}
+
+.speakingVisual {
+  min-width: 0;
+  max-width: 500px;
+  width: 100%;
+}
+
+.speakingImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5.35;
+  overflow: hidden;
+  border-radius: 56px;
+  background: rgba(0, 47, 66, 0.08);
+  box-shadow: 0 18px 42px rgba(0, 47, 66, 0.08);
+}
+
+.speakingImage {
+  object-fit: cover;
+  object-position: center;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-10);
 }
 
@@ -92,6 +183,7 @@
   gap: var(--space-4);
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 0;
 }
 
 .card:hover {
@@ -134,6 +226,7 @@
   line-height: 1.35;
   color: var(--color-black);
   margin-bottom: var(--space-4);
+  overflow-wrap: anywhere;
 }
 
 .dashedDivider {
@@ -673,6 +766,24 @@
 
 /* ── Responsive ── */
 @media (max-width: 992px) {
+  .speakingIntro {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .speakingVisual {
+    max-width: 560px;
+  }
+
+  .speakingHeading {
+    font-size: clamp(2.15rem, 6vw, 3rem);
+  }
+
+  .speakingImageFrame {
+    border-radius: 40px;
+    aspect-ratio: 4 / 3;
+  }
+
   .grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
@@ -689,5 +800,53 @@
   .grid {
     grid-template-columns: 1fr;
     gap: var(--space-10);
+  }
+
+  .speakingIntro {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-10);
+    gap: var(--space-8);
+  }
+
+  .speakingHeading {
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    line-height: 1.14;
+  }
+
+  .speakingCopy p {
+    margin-top: var(--space-6);
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
+
+  .speakingButton {
+    min-height: 52px;
+    margin-top: var(--space-8);
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+
+  .speakingImageFrame {
+    border-radius: 32px;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .heading {
+    margin-bottom: var(--space-10);
+  }
+
+  .speakingImageFrame,
+  .mediaWrapper {
+    border-radius: 24px;
+  }
+
+  .grid {
+    gap: var(--space-8);
   }
 }

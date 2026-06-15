@@ -19,13 +19,13 @@
 }
 
 .badgeLeft {
-  left: 8%;
-  bottom: 24%;
+  left: clamp(32px, 5vw, 96px);
+  bottom: clamp(34px, 7vh, 76px);
 }
 
 .badgeRight {
-  right: 8%;
-  bottom: 18%;
+  right: clamp(32px, 5vw, 96px);
+  bottom: clamp(30px, 6vh, 68px);
 }
 
 .iconCircle {
@@ -109,38 +109,48 @@
 /* Responsive Positions */
 @media (max-width: 1200px) {
   .badgeLeft {
-    left: 4%;
-    bottom: 20%;
+    left: var(--space-8);
+    bottom: var(--space-8);
   }
   .badgeRight {
-    right: 4%;
-    bottom: 15%;
+    right: var(--space-8);
+    bottom: var(--space-8);
   }
 }
 
 @media (max-width: 900px) {
-  .badgeLeft {
-    left: 3%;
-    bottom: 12%;
-    transform: scale(0.9) !important;
+  .trustBadgesContainer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    width: 100%;
+    height: auto;
+    margin: calc(var(--space-12) * -1) auto var(--space-8);
+    padding: 0 var(--space-5);
+    pointer-events: auto;
   }
-  .badgeRight {
-    right: 3%;
-    bottom: 8%;
-    transform: scale(0.9) !important;
+
+  .badge {
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: scale(0.92) !important;
+    max-width: min(100%, 360px);
   }
 }
 
 @media (max-width: 600px) {
   /* On small screens, stack them near the bottom center to avoid text overlapping */
   .trustBadgesContainer {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-4);
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-12);
+    margin-top: calc(var(--space-8) * -1);
+    margin-bottom: var(--space-8);
     width: 100%;
     height: auto;
     z-index: 5;
@@ -159,9 +169,10 @@
   }
 
   .textPill {
-    padding: 10px 25px 10px;
-    display: flex;;
+    padding: 10px 16px 10px 22px;
+    display: flex;
     flex-direction: column;
+    min-width: 0;
   }
   .ratingText{
     display: flex;
@@ -172,5 +183,22 @@
     white-space: normal;
     font-size: 0.9rem;
     word-break: break-word;
+    text-align: center;
+  }
+}
+
+@media (max-width: 390px) {
+  .badge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .iconCircle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .textPill {
+    max-width: calc(100vw - 88px);
   }
 }

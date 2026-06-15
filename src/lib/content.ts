@@ -8,15 +8,16 @@ import type { NavLink, HeroProps, TrustBarProps, PainPointsProps } from '@/types
 ───────────────────────────────────────────────────────────── */
 
 export const navLinks: NavLink[] = [
-  { label: 'About',        href: '#about' },
-  { label: 'Ventures',     href: '#ventures' },
-  { label: 'Impact',       href: '#impact' },
-  { label: 'Partnerships', href: '#partnerships' },
-  { label: 'Resources',    href: '#resources' },
+  { label: 'About Dr Senthil', href: '#about' },
+  { label: 'Consulting',         href: '#consulting' },
+  { label: 'Ventures',           href: '#ventures' },
+  { label: 'Impact',             href: '#impact' },
+  { label: 'Speaking / Training', href: '#speaking-training' },
+  { label: 'Blog',               href: '#blog' },
 ];
 
 export const navCtaLabel = 'Book a Session';
-export const navCtaHref  = 'mailto:senthil@ophthall.in';
+export const navCtaHref  = '#contact';
 
 /* ─────────────────────────────────────────────────────────────
    HERO
@@ -31,7 +32,7 @@ export const heroProps: HeroProps = {
     'Helping ophthalmologists scale their practice, improve patient outcomes, ' +
     'and build sustainable, profitable healthcare businesses.',
   ctaLabel: 'Book a Speaking Session',
-  ctaHref:  'mailto:senthil@ophthall.in',
+  ctaHref:  '#contact',
 };
 
 /* ─────────────────────────────────────────────────────────────
@@ -95,5 +96,5 @@ export const biographyProps = {
 export const biographyCta = {
   subheading: 'Ready to scale your practice?',
   ctaLabel:   'Book a Session',
-  ctaHref:    'mailto:senthil@ophthall.in',
+  ctaHref:    '#contact',
 };
