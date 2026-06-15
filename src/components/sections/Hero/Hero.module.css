@@ -234,7 +234,7 @@
   }
 
   .heading {
-    font-size: clamp(1.82rem, 8.4vw, 1.9rem);
+    font-size: clamp(1.82rem, 8.4vw, 1.95rem);
     line-height: 1.12;
   }
 
@@ -268,7 +268,7 @@
   }
 
   .heading {
-    font-size: 1.70rem;
+    font-size: 1.75rem;
   }
 }
 
