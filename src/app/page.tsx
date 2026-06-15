@@ -124,7 +124,7 @@ export default function Home() {
       <Hero
         heading1="Ophthalmologist. Entrepreneur."
         heading2Prefix="Transforming Eye Care"
-        heading2Highlight="Across Globally"
+        heading2Highlight="Globally"
         subtext="Dr. Senthil Tamilarasan — Founder of Ophthall, Healthcare Business Strategist, and Speaker. Helping eye hospitals scale sustainably through practice development, mentoring, and innovation."
         ctaLabel="Book a Session"
         ctaHref="#contact"
