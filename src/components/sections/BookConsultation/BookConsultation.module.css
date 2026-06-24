@@ -98,6 +98,45 @@
   background-color: rgba(239, 68, 68, 0.02);
 }
 
+.input:focus {
+  background: var(--color-white);
+  border-color: var(--color-brand-blue);
+  box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.08);
+}
+
+.fieldHint {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: -4px 0 0;
+}
+
+.textarea {
+  width: 100%;
+  padding: 16px 20px;
+  background: #f8f8f8;
+  border: 1.5px solid rgba(0, 47, 66, 0.08);
+  border-radius: 12px;
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  color: var(--color-black);
+  transition: all 0.25s ease;
+  outline: none;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.textarea:focus {
+  background: var(--color-white);
+  border-color: var(--color-brand-blue);
+  box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.08);
+}
+
+.textarea.inputError {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.02);
+}
+
 .errorText {
   font-size: 0.85rem;
   color: #ef4444;

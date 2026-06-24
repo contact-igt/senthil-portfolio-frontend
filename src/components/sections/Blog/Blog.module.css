@@ -35,6 +35,15 @@
   display: flex;
   min-width: 0;
   flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-cta-primary);
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 
 .media {
@@ -50,6 +59,11 @@
 .image {
   object-fit: cover;
   object-position: center;
+  transition: transform 0.38s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
 }
 
 .date {
@@ -62,14 +76,20 @@
 }
 
 .cardTitle {
-  min-height: 70px;
+  /* autoprefixer: off */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+  overflow: hidden;
+  min-height: 2.78em;
+  max-height: 2.78em;
   margin: 0;
   color: var(--color-black);
   font-size: clamp(1.16rem, 1.36vw, 1.38rem);
   font-weight: var(--font-bold);
   line-height: 1.25;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
 }
 
 .divider {
@@ -79,13 +99,29 @@
 }
 
 .bottomCategories {
-  margin: 0;
+  margin: 0 0 24px;
   color: var(--color-section-subtext);
   font-size: clamp(0.92rem, 1.02vw, 1.04rem);
   font-weight: var(--font-regular);
   line-height: 1.25;
   letter-spacing: 0;
   overflow-wrap: anywhere;
+}
+
+.exploreWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(56px, 6vw, 80px);
+}
+
+.exploreBtn:hover {
+  background-color: var(--color-black) !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.exploreBtn {
+  padding: var(--space-5) var(--space-16) !important;
 }
 
 .validateGraphic,

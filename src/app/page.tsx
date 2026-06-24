@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { Hero } from '@/components/sections/Hero';
 import { FloatingChat } from '@/components/ui/FloatingChat';
+import UTMTracker from '@/components/ui/UTMTracker';
 
 /* ── Dynamic imports (below fold) ─────────────────────────── */
 const PainPoints = dynamic(
@@ -120,6 +121,7 @@ function SectionSkeleton({ height }: { height: string }) {
 export default function Home() {
   return (
     <main>
+      <UTMTracker />
       {/* Above fold — static imports (critical path) */}
       <Hero
         heading1="Ophthalmologist. Entrepreneur."

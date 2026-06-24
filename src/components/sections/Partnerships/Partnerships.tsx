@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { gsap } from '@/lib/animations';
 import { PartnershipCard } from './PartnershipCard';
+import { SpeakingModal } from '@/components/ui/SpeakingModal';
 import type { PartnershipsProps, PartnershipItem } from '@/types';
 import styles from './Partnerships.module.css';
 
@@ -134,6 +135,7 @@ export function Partnerships({
   heading = 'Speaking / Training',
   items = DEFAULT_ITEMS,
 }: PartnershipsProps) {
+  const [isSpeakingModalOpen, setIsSpeakingModalOpen] = useState(false);
   const ref = useScrollAnimation<HTMLElement>((container) => {
     // Header reveal
     const headerEls = container.querySelectorAll('[data-animate="header"]');
@@ -233,9 +235,13 @@ export function Partnerships({
               {SPEAKING_BODY.map((paragraph) => (
                 <p key={paragraph}>{renderSpeakingText(paragraph)}</p>
               ))}
-              <a className={styles.speakingButton} href="mailto:senthil@ophthall.in">
+              <button
+                className={styles.speakingButton}
+                type="button"
+                onClick={() => setIsSpeakingModalOpen(true)}
+              >
                 Book a Speaking Slot
-              </a>
+              </button>
             </div>
           </div>
 
@@ -249,6 +255,11 @@ export function Partnerships({
           </div>
         </div>
       </div>
+
+      <SpeakingModal
+        isOpen={isSpeakingModalOpen}
+        onClose={() => setIsSpeakingModalOpen(false)}
+      />
     </section>
   );
 }
