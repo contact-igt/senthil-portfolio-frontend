@@ -10,6 +10,8 @@ export interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   onClick?: () => void;
   href?: string;
+  target?: string;
+  rel?: string;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
 }

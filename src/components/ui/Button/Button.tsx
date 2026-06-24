@@ -10,6 +10,8 @@ export function Button({
   size = 'md',
   onClick,
   href,
+  target,
+  rel,
   className,
   type = 'button',
 }: ButtonProps) {
@@ -17,7 +19,7 @@ export function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} target={target} rel={rel} className={classes}>
         {children}
       </a>
     );

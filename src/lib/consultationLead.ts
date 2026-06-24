@@ -6,6 +6,7 @@ export interface ConsultationFormValues {
   email: string;
   organization: string;
   location: string;
+  message: string;
 }
 
 export const consultationValidationSchema = Yup.object({
@@ -27,6 +28,10 @@ export const consultationValidationSchema = Yup.object({
   location: Yup.string()
     .trim()
     .required('Location is required'),
+  message: Yup.string()
+    .trim()
+    .required('Message is required')
+    .min(10, 'Message must be at least 10 characters'),
 });
 
 export const consultationInitialValues: ConsultationFormValues = {
@@ -35,6 +40,7 @@ export const consultationInitialValues: ConsultationFormValues = {
   email: '',
   organization: '',
   location: '',
+  message: '',
 };
 
 function getUTM(key: string) {
@@ -55,8 +61,9 @@ export function buildConsultationPayload(values: ConsultationFormValues) {
     email: values.email || '',
     organization: values.organization || '',
     location: values.location || '',
-    service: 'Book a Consultation',
-    form_name: 'Book a Consultation',
+    message: values.message || '',
+    service: 'Practice Growth Consultation',
+    form_name: 'Practice Growth Consultation',
     page_name: 'senthilsir-portfolio',
     // submission_status: 'lead',
     // submitted_at: new Date().toISOString(),
@@ -98,7 +105,7 @@ export async function submitConsultationToGoogleSheet(
 
   try {
     const res = await fetch(
-      'https://script.google.com/macros/s/AKfycbwZmJd1XHCeLT3gEwIojdsUIiDY71OTkXM7C3UnQSEFzo37txZULGe8-T2wXXGWAxvIFg/exec',
+      'https://script.google.com/macros/s/AKfycbwAdAKUBnzqchQx6MyeUZZtOSYpFjvQvfLdbL1DaCB49SZVkI_6mlu-owO6K1yMrhM7mA/exec',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -124,4 +131,66 @@ export async function submitConsultationToGoogleSheet(
     await new Promise((resolve) => setTimeout(resolve, delay));
     return submitConsultationToGoogleSheet(payload, retries - 1, delay);
   }
+}
+
+/* ── Speaking Slot Form ─────────────────────────────────── */
+
+export interface SpeakingSlotFormValues {
+  name: string;
+  mobile: string;
+  email: string;
+  organization: string;
+  location: string;
+  message: string;
+}
+
+export const speakingSlotValidationSchema = Yup.object({
+  name: Yup.string()
+    .trim()
+    .required('Name is required')
+    .matches(/^[a-zA-Z ]*$/, 'Enter a valid name'),
+  mobile: Yup.string()
+    .trim()
+    .required('Mobile number is required')
+    .matches(/^[0-9]{10}$/, 'Enter a valid 10 digit mobile number'),
+  email: Yup.string()
+    .trim()
+    .required('Email ID is required')
+    .email('Enter a valid email ID'),
+  organization: Yup.string()
+    .trim()
+    .required('Organization name is required'),
+  location: Yup.string()
+    .trim()
+    .required('Location is required'),
+  message: Yup.string()
+    .trim()
+    .required('Message is required')
+    .min(10, 'Please provide at least 10 characters'),
+});
+
+export const speakingSlotInitialValues: SpeakingSlotFormValues = {
+  name: '',
+  mobile: '',
+  email: '',
+  organization: '',
+  location: '',
+  message: '',
+};
+
+export function buildSpeakingSlotPayload(values: SpeakingSlotFormValues) {
+  const mobile = values.mobile || '';
+
+  return {
+    name: values.name || '',
+    mobile: mobile ? `+91${mobile}` : '',
+    email: values.email || '',
+    organization: values.organization || '',
+    location: values.location || '',
+    message: values.message || '',
+    service: 'Speaking Slot',
+    form_name: 'Book a Speaking Slot',
+    page_name: 'senthilsir-portfolio',
+    utm_source: getUTM('utm_source'),
+  };
 }

@@ -31,7 +31,7 @@ export function BookConsultation({ embedded = false, showTitle = true }: BookCon
       try {
         const payload = buildConsultationPayload(values);
         await submitConsultationToGoogleSheet(payload);
-        helpers.resetForm();
+        helpers.resetForm({ values: consultationInitialValues });
         helpers.setStatus({ type: 'success', message: 'Thank you! Your request has been received. We will get back to you shortly.' });
       } catch {
         helpers.setStatus({ type: 'error', message: 'Oops! Something went wrong. Please try again or email directly.' });
@@ -50,7 +50,7 @@ export function BookConsultation({ embedded = false, showTitle = true }: BookCon
       <div className={`${styles.section} ${embedded ? styles.embedded : ''}`}>
         {showTitle && (
           <h2 id="book-consultation-heading" className={styles.sectionTitle}>
-            Book a Professional Consultation
+            Book a Practice Growth Consultation
           </h2>
         )}
 
@@ -90,6 +90,34 @@ export function BookConsultation({ embedded = false, showTitle = true }: BookCon
                 )}
               </div>
             ))}
+
+            <div className={`${styles.field} ${styles.fieldFull}`}>
+              <label className={styles.label} htmlFor="message">
+                Message
+              </label>
+              {/* <p className={styles.fieldHint}>
+                Please provide details about your practice and specify the areas in which you would like suggestions for growth.
+              </p> */}
+              <textarea
+                className={`${styles.textarea} ${
+                  formik.touched.message && formik.errors.message ? styles.inputError : ''
+                }`}
+                id="message"
+                name="message"
+                rows={5}
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                aria-invalid={Boolean(formik.touched.message && formik.errors.message)}
+                aria-describedby="message-error"
+                placeholder="Please provide details about your practice and specify the areas in which you would like suggestions for growth."
+              />
+              {formik.touched.message && formik.errors.message && (
+                <p className={styles.errorText} id="message-error">
+                  {formik.errors.message}
+                </p>
+              )}
+            </div>
 
             <button className={styles.submitButton} type="submit" disabled={formik.isSubmitting}>
               {formik.isSubmitting ? 'Sending Request...' : 'Apply Now'}
