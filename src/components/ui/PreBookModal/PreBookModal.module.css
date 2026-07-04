@@ -224,7 +224,7 @@
   }
 
   .visual {
-    min-height: 700px;
+    min-height: 750px;
   }
 
   .imageFrame {
@@ -242,7 +242,7 @@
   }
 
   .visual {
-    min-height: clamp(260px, 48vh, 520px)
+    min-height: clamp(400px, 50vh, 650px)
   }
 
   .imageFrame {
