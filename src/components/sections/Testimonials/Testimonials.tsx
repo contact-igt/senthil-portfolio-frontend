@@ -74,7 +74,7 @@ const DEFAULT_REVIEWS: ReviewData[] = [
     avatarInitials: 'AW',
     avatarColor: '#E65100',
     rating: 5,
-    text: 'Dr. Tamilarasan is an excellent teacher and mentor to the Unite for Sight medical volunteers at Uma Eye Clinic in Chennai, India, and at the mobile eye camps in the surrounding areas and villages. I enjoyed working with him at the eye camps because I earned a great deal about the healthcare delivery system in India.',
+    text: 'Dr. Tamilarasan is an excellent teacher and mentor to the Unite for Sight medical volunteers at Eye Clinic in Chennai, India, and at the mobile eye camps in the surrounding areas and villages. I enjoyed working with him at the eye camps because I earned a great deal about the healthcare delivery system in India.',
   },
   {
     id: 'rev-6',
