@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { Hero } from '@/components/sections/Hero';
 import { FloatingChat } from '@/components/ui/FloatingChat';
+import { PreBookPopup } from '@/components/ui/PreBookPopup';
 import UTMTracker from '@/components/ui/UTMTracker';
 
 /* ── Dynamic imports (below fold) ─────────────────────────── */
@@ -122,6 +123,7 @@ export default function Home() {
   return (
     <main>
       <UTMTracker />
+      <PreBookPopup />
       {/* Above fold — static imports (critical path) */}
       <Hero
         heading1="Ophthalmologist. Entrepreneur."

@@ -105,7 +105,7 @@ export async function submitConsultationToGoogleSheet(
 
   try {
     const res = await fetch(
-      'https://script.google.com/macros/s/AKfycbwAdAKUBnzqchQx6MyeUZZtOSYpFjvQvfLdbL1DaCB49SZVkI_6mlu-owO6K1yMrhM7mA/exec',
+      'https://script.google.com/macros/s/AKfycbxXEUUoBRqrOH2RBQKIpZyspSgE3i9oUGNdAIa16UtxuNxWz-SfjaKWeK4GN4Ky_DcE7A/exec',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -190,6 +190,65 @@ export function buildSpeakingSlotPayload(values: SpeakingSlotFormValues) {
     message: values.message || '',
     service: 'Speaking Slot',
     form_name: 'Book a Speaking Slot',
+    page_name: 'senthilsir-portfolio',
+    utm_source: getUTM('utm_source'),
+  };
+}
+
+/* ── Book Pre-Book Form ─────────────────────────────────── */
+
+export interface BookPrebookFormValues {
+  name: string;
+  mobile: string;
+  email: string;
+  city: string;
+  profession: string;
+  organization: string;
+}
+
+export const bookPrebookValidationSchema = Yup.object({
+  name: Yup.string()
+    .trim()
+    .required('Name is required')
+    .matches(/^[a-zA-Z ]*$/, 'Enter a valid name'),
+  mobile: Yup.string()
+    .trim()
+    .required('Mobile number is required')
+    .matches(/^[0-9]{10}$/, 'Enter a valid 10 digit mobile number'),
+  email: Yup.string()
+    .trim()
+    .required('Email ID is required')
+    .email('Enter a valid email ID'),
+  city: Yup.string()
+    .trim()
+    .required('City is required'),
+  profession: Yup.string()
+    .trim()
+    .required('Profession is required'),
+  organization: Yup.string().trim(),
+});
+
+export const bookPrebookInitialValues: BookPrebookFormValues = {
+  name: '',
+  mobile: '',
+  email: '',
+  city: '',
+  profession: '',
+  organization: '',
+};
+
+export function buildBookPrebookPayload(values: BookPrebookFormValues) {
+  const mobile = values.mobile || '';
+
+  return {
+    name: values.name || '',
+    mobile: mobile ? `+91${mobile}` : '',
+    email: values.email || '',
+    city: values.city || '',
+    profession: values.profession || '',
+    organization: values.organization || '',
+    service: 'Psychology of Medical Practice Pre-Book',
+    form_name: 'Psychology of Medical Practice Pre-Book',
     page_name: 'senthilsir-portfolio',
     utm_source: getUTM('utm_source'),
   };
