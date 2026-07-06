@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import {
   buildConsultationPayload,
@@ -8,6 +9,8 @@ import {
   consultationValidationSchema,
   submitConsultationToGoogleSheet,
 } from '@/lib/consultationLead';
+import { ThankYouPopup } from '@/components/ui/ThankYouPopup';
+import { THANK_YOU_CONTENT } from '@/components/ui/ThankYouPopup/thankYouContent';
 import styles from './BookConsultation.module.css';
 
 const fields = [
@@ -24,6 +27,8 @@ interface BookConsultationProps {
 }
 
 export function BookConsultation({ embedded = false, showTitle = true }: BookConsultationProps) {
+  const [isThankYouOpen, setIsThankYouOpen] = useState(false);
+
   const formik = useFormik({
     initialValues: consultationInitialValues,
     validationSchema: consultationValidationSchema,
@@ -32,7 +37,10 @@ export function BookConsultation({ embedded = false, showTitle = true }: BookCon
         const payload = buildConsultationPayload(values);
         await submitConsultationToGoogleSheet(payload);
         helpers.resetForm({ values: consultationInitialValues });
-        helpers.setStatus({ type: 'success', message: 'Thank you! Your request has been received. We will get back to you shortly.' });
+        helpers.setStatus(undefined);
+        // Old inline success message replaced by ThankYouPopup.
+        // helpers.setStatus({ type: 'success', message: 'Thank you! Your request has been received. We will get back to you shortly.' });
+        setIsThankYouOpen(true);
       } catch {
         helpers.setStatus({ type: 'error', message: 'Oops! Something went wrong. Please try again or email directly.' });
       } finally {
@@ -123,11 +131,9 @@ export function BookConsultation({ embedded = false, showTitle = true }: BookCon
               {formik.isSubmitting ? 'Sending Request...' : 'Apply Now'}
             </button>
 
-            {formik.status?.message && (
+            {formik.status?.message && formik.status.type === 'error' && (
               <div
-                className={`${styles.statusText} ${
-                  formik.status.type === 'success' ? styles.successText : styles.errorText
-                }`}
+                className={`${styles.statusText} ${styles.errorText}`}
               >
                 {formik.status.message}
               </div>
@@ -167,6 +173,12 @@ export function BookConsultation({ embedded = false, showTitle = true }: BookCon
           </aside>
         </div>
       </div>
+
+      <ThankYouPopup
+        isOpen={isThankYouOpen}
+        onClose={() => setIsThankYouOpen(false)}
+        content={THANK_YOU_CONTENT.consultation}
+      />
     </section>
   );
 }

@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   title: 'Dr. Senthil Tamilarasan - Ophthalmologist & Healthcare Entrepreneur',
   description:
     'Dr. T. Senthil Tamilaraasan - Founder of Ophthall, Healthcare Business Strategist, and Speaker. Helping eye hospitals scale sustainably through practice development, mentoring, and innovation.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [{ url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
 };
 
 export default function RootLayout({

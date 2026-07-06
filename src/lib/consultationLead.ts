@@ -247,8 +247,8 @@ export function buildBookPrebookPayload(values: BookPrebookFormValues) {
     city: values.city || '',
     profession: values.profession || '',
     organization: values.organization || '',
-    service: 'Psychology of Medical Practice Pre-Book',
-    form_name: 'Psychology of Medical Practice Pre-Book',
+    service: 'Psychology of Medical Practice Book ( Pre-Book )',
+    form_name: 'Psychology of Medical Practice Book (Pre-Book )',
     page_name: 'senthilsir-portfolio',
     utm_source: getUTM('utm_source'),
   };
