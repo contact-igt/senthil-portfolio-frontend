@@ -9,6 +9,8 @@ import {
   speakingSlotValidationSchema,
   submitConsultationToGoogleSheet,
 } from '@/lib/consultationLead';
+import { ThankYouPopup } from '@/components/ui/ThankYouPopup';
+import { THANK_YOU_CONTENT } from '@/components/ui/ThankYouPopup/thankYouContent';
 import styles from './SpeakingModal.module.css';
 
 interface SpeakingModalProps {
@@ -25,9 +27,7 @@ const TEXT_FIELDS = [
 ] as const;
 
 export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
+  const [isThankYouOpen, setIsThankYouOpen] = useState(false);
 
   const formik = useFormik({
     initialValues: speakingSlotInitialValues,
@@ -37,11 +37,14 @@ export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
         const payload = buildSpeakingSlotPayload(values);
         await submitConsultationToGoogleSheet(payload);
         helpers.resetForm();
-        helpers.setStatus({
-          type: 'success',
-          message: 'Thank you! Your speaking slot request has been received. We will get back to you shortly.',
-        });
-        setTimeout(() => onClose(), 3000);
+        helpers.setStatus(undefined);
+        // Old inline success message replaced by ThankYouPopup.
+        // helpers.setStatus({
+        //   type: 'success',
+        //   message: 'Thank you! Your speaking slot request has been received. We will get back to you shortly.',
+        // });
+        onClose();
+        setIsThankYouOpen(true);
       } catch {
         helpers.setStatus({
           type: 'error',
@@ -75,8 +78,6 @@ export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
     }
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
-
-  if (!isOpen || !mounted) return null;
 
   const modal = (
     <div
@@ -168,11 +169,9 @@ export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
             </button>
           </div>
 
-          {formik.status?.message && (
+          {formik.status?.message && formik.status.type === 'error' && (
             <div
-              className={`${styles.statusText} ${
-                formik.status.type === 'success' ? styles.statusSuccess : styles.statusError
-              }`}
+              className={`${styles.statusText} ${styles.statusError}`}
             >
               {formik.status.message}
             </div>
@@ -182,7 +181,16 @@ export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
     </div>
   );
 
-  return createPortal(modal, document.body);
+  return (
+    <>
+      {isOpen && typeof document !== 'undefined' && createPortal(modal, document.body)}
+      <ThankYouPopup
+        isOpen={isThankYouOpen}
+        onClose={() => setIsThankYouOpen(false)}
+        content={THANK_YOU_CONTENT.speaking}
+      />
+    </>
+  );
 }
 
 export default SpeakingModal;

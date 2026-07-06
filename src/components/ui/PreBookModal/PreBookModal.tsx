@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
 import {
@@ -10,6 +10,8 @@ import {
   buildBookPrebookPayload,
   submitConsultationToGoogleSheet,
 } from '@/lib/consultationLead';
+import { ThankYouPopup } from '@/components/ui/ThankYouPopup';
+import { THANK_YOU_CONTENT } from '@/components/ui/ThankYouPopup/thankYouContent';
 import styles from './PreBookModal.module.css';
 
 interface PreBookModalProps {
@@ -27,6 +29,8 @@ const TEXT_FIELDS = [
 ] as const;
 
 export function PreBookModal({ isOpen, onClose }: PreBookModalProps) {
+  const [isThankYouOpen, setIsThankYouOpen] = useState(false);
+
   const formik = useFormik({
     initialValues: bookPrebookInitialValues,
     validationSchema: bookPrebookValidationSchema,
@@ -35,11 +39,14 @@ export function PreBookModal({ isOpen, onClose }: PreBookModalProps) {
         const payload = buildBookPrebookPayload(values);
         await submitConsultationToGoogleSheet(payload);
         helpers.resetForm();
-        helpers.setStatus({
-          type: 'success',
-          message: 'Thank you! Your pre-booking interest has been received. We will share launch updates and pre-booking information with you soon.',
-        });
-        setTimeout(() => onClose(), 3000);
+        helpers.setStatus(undefined);
+        // Old inline success message replaced by ThankYouPopup.
+        // helpers.setStatus({
+        //   type: 'success',
+        //   message: 'Thank you! Your pre-booking interest has been received. We will share launch updates and pre-booking information with you soon.',
+        // });
+        onClose();
+        setIsThankYouOpen(true);
       } catch {
         helpers.setStatus({
           type: 'error',
@@ -78,7 +85,7 @@ export function PreBookModal({ isOpen, onClose }: PreBookModalProps) {
     };
   }, [isOpen]);
 
-  if (!isOpen || typeof document === 'undefined') return null;
+  if (typeof document === 'undefined') return null;
 
   const modal = (
     <div
@@ -114,7 +121,7 @@ export function PreBookModal({ isOpen, onClose }: PreBookModalProps) {
         <div className={styles.content}>
           <span className={styles.tag}>Launching Soon</span>
           <h2 id="prebook-modal-title" className={styles.title}>
-            Be among the first to own Psychology of Medical Practice by Dr. Senthil
+            Be among the first to own Psychology of Medical Practice Book by Dr. Senthil
           </h2>
 
           <form className={styles.form} onSubmit={formik.handleSubmit} noValidate>
@@ -163,11 +170,9 @@ export function PreBookModal({ isOpen, onClose }: PreBookModalProps) {
               No payment required at this stage. Simply fill in your details to receive launch updates and pre-booking information.
             </p>
 
-            {formik.status?.message && (
+            {formik.status?.message && formik.status.type === 'error' && (
               <div
-                className={`${styles.statusText} ${
-                  formik.status.type === 'success' ? styles.statusSuccess : styles.statusError
-                }`}
+                className={`${styles.statusText} ${styles.statusError}`}
               >
                 {formik.status.message}
               </div>
@@ -178,7 +183,16 @@ export function PreBookModal({ isOpen, onClose }: PreBookModalProps) {
     </div>
   );
 
-  return createPortal(modal, document.body);
+  return (
+    <>
+      {isOpen && createPortal(modal, document.body)}
+      <ThankYouPopup
+        isOpen={isThankYouOpen}
+        onClose={() => setIsThankYouOpen(false)}
+        content={THANK_YOU_CONTENT.prebook}
+      />
+    </>
+  );
 }
 
 export default PreBookModal;
