@@ -15,6 +15,14 @@ const PainPoints = dynamic(
   }
 );
 
+const HomeBookFeature = dynamic(
+  () => import('@/components/sections/HomeBookFeature'),
+  {
+    loading: () => <SectionSkeleton height="560px" />,
+    ssr: true,
+  }
+);
+
 const Partner = dynamic(
   () => import('@/components/sections/Partner'),
   {
@@ -136,6 +144,7 @@ export default function Home() {
 
       {/* Below fold — dynamic import */}
       <PainPoints />
+      <HomeBookFeature />
       <Partner
         heading="Clinical Credentials & Healthcare Leadership"
         subtitle="A career built at the intersection of clinical ophthalmology, healthcare entrepreneurship, and practice development — with recognised memberships and active leadership across India."

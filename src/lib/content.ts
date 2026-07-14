@@ -14,6 +14,7 @@ export const navLinks: NavLink[] = [
   { label: 'Impact',             href: '#impact' },
   { label: 'Speaking / Training', href: '#speaking-training' },
   { label: 'Blog',               href: '#blog' },
+  { label: 'Book',               href: '#book' },
 ];
 
 export const navCtaLabel = 'Book a Session';

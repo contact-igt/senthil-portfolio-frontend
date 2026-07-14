@@ -1,0 +1,1 @@
+export { PsychologyMedicalPracticeLanding } from './PsychologyMedicalPracticeLanding';
