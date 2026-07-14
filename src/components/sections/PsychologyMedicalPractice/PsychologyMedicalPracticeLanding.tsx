@@ -463,7 +463,7 @@ export function PsychologyMedicalPracticeLanding() {
               every practice decision and every successful healthcare organisation.
             </p>
             <div className={styles.heroActions}>
-              <button className={styles.heroActionPrimary} type="button" onClick={handleBuyBookClick} disabled={isBuyBookDisabled}>Buy the Book</button>
+              <button className={styles.heroActionPrimary} type="button" onClick={handleBuyBookClick}>Buy the Book</button>
               {/* <a className={styles.heroActionSecondary} href="#read-chapter-one">Read Chapter One Free</a> */}
               <a className={styles.heroActionGhost} href="#book-trailer">Watch the Book Trailer</a>
             </div>
