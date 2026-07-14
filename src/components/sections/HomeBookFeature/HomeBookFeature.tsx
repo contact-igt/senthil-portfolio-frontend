@@ -13,7 +13,7 @@ export function HomeBookFeature() {
     <section id="book" className={styles.section} aria-labelledby="home-book-heading">
       <div className={styles.container}>
         <div className={styles.copy}>
-          <span className={styles.eyebrow}>New Book</span>
+          <span className={styles.eyebrow}>New Release</span>
           <h2 id="home-book-heading" className={styles.heading}>
             Psychology of Medical Practice
           </h2>
