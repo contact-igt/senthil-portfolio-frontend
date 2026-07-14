@@ -785,15 +785,15 @@ export function PsychologyMedicalPracticeLanding() {
             </div>
 
             <div className={styles.authorActions}>
-              <a href="https://drsenthil.com" target="_blank" rel="noreferrer">
+              <a href="https://senthil.ophthall.in/" target="_blank" rel="noreferrer">
                 <ArrowUpRight size={20} strokeWidth={2.3} />
                 <span>Visit Personal Website</span>
               </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+              <a href="https://www.linkedin.com/in/dr-tamilarasan-senthil-b4b7b32/" target="_blank" rel="noreferrer">
                 <LinkedInIcon />
                 <span>LinkedIn</span>
               </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+              <a href="https://www.instagram.com/senthilophthall/" target="_blank" rel="noreferrer">
                 <InstagramIcon />
                 <span>Instagram</span>
               </a>
