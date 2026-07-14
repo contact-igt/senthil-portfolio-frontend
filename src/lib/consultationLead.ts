@@ -105,7 +105,7 @@ export async function submitConsultationToGoogleSheet(
 
   try {
     const res = await fetch(
-      'https://script.google.com/macros/s/AKfycbxXEUUoBRqrOH2RBQKIpZyspSgE3i9oUGNdAIa16UtxuNxWz-SfjaKWeK4GN4Ky_DcE7A/exec',
+      'https://script.google.com/macros/s/AKfycbzaTho2AnPSijIonnLvICwDHlr59WqvLmTS-1rp05hMe9j4zZnOYwmbxVEpocu2oA-Nzw/exec',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -141,6 +141,7 @@ export interface SpeakingSlotFormValues {
   email: string;
   organization: string;
   location: string;
+  topic: string;
   message: string;
 }
 
@@ -163,6 +164,9 @@ export const speakingSlotValidationSchema = Yup.object({
   location: Yup.string()
     .trim()
     .required('Location is required'),
+  topic: Yup.string()
+    .trim()
+    .required('Topic is required'),
   message: Yup.string()
     .trim()
     .required('Message is required')
@@ -175,6 +179,7 @@ export const speakingSlotInitialValues: SpeakingSlotFormValues = {
   email: '',
   organization: '',
   location: '',
+  topic: '',
   message: '',
 };
 
@@ -187,6 +192,7 @@ export function buildSpeakingSlotPayload(values: SpeakingSlotFormValues) {
     email: values.email || '',
     organization: values.organization || '',
     location: values.location || '',
+    topic: values.topic || '',
     message: values.message || '',
     service: 'Speaking Slot',
     form_name: 'Book a Speaking Slot',

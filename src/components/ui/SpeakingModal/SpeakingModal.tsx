@@ -26,6 +26,16 @@ const TEXT_FIELDS = [
   { id: 'location',     label: 'Location (City / State)',      type: 'text',  autoComplete: 'address-level2', placeholder: 'Enter your city or state',            fullWidth: true  },
 ] as const;
 
+const TOPIC_OPTIONS = [
+  'Psychology of Medical Practice',
+  'Patient Trust',
+  'Medical Leadership',
+  'Communication',
+  'Healthcare Entrepreneurship',
+  'Hospital Growth',
+  'Practice Management',
+] as const;
+
 export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
   const [isThankYouOpen, setIsThankYouOpen] = useState(false);
 
@@ -133,6 +143,35 @@ export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
             </div>
           ))}
 
+          <div className={`${styles.field} ${styles.fieldFull}`}>
+            <label className={styles.label} htmlFor="sm-topic">
+              Topic Interested
+            </label>
+            <select
+              className={`${styles.input} ${styles.select} ${
+                formik.touched.topic && formik.errors.topic ? styles.inputError : ''
+              }`}
+              id="sm-topic"
+              name="topic"
+              value={formik.values.topic}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              aria-invalid={Boolean(formik.touched.topic && formik.errors.topic)}
+              aria-describedby="sm-topic-error"
+            >
+              <option value="">Select a speaking topic</option>
+              {TOPIC_OPTIONS.map((topic) => (
+                <option value={topic} key={topic}>
+                  {topic}
+                </option>
+              ))}
+            </select>
+            {formik.touched.topic && formik.errors.topic && (
+              <p className={styles.errorText} id="sm-topic-error">
+                {formik.errors.topic}
+              </p>
+            )}
+          </div>
           {/* Message field */}
           <div className={`${styles.field} ${styles.fieldFull}`}>
             <label className={styles.label} htmlFor="sm-message">
@@ -145,7 +184,7 @@ export function SpeakingModal({ isOpen, onClose }: SpeakingModalProps) {
               id="sm-message"
               name="message"
               rows={4}
-              placeholder="Mention Details about your Organisation | Event Details | Topics Interested"
+              placeholder="Mention your event details, audience size, preferred date or other notes"
               value={formik.values.message}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}

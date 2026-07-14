@@ -103,6 +103,16 @@
   outline: none;
 }
 
+.select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 42px;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(0, 47, 66, 0.7) 50%), linear-gradient(135deg, rgba(0, 47, 66, 0.7) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 19px, calc(100% - 16px) 19px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
 .input:focus {
   background: #ffffff;
   border-color: var(--color-cta-primary);
