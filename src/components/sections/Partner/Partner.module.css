@@ -2,14 +2,26 @@
 
 .section {
   position: relative;
-  background-color: var(--color-black);
+  background: #f8fbfd;
   padding: clamp(60px, 8vw, 100px) 0;
   overflow: hidden;
   color: var(--color-partner-text);
   z-index: 10;
 }
 
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 48px 48px 0 0;
+  background: var(--color-black);
+  pointer-events: none;
+}
+
 .container {
+  position: relative;
+  z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--space-6);
@@ -198,9 +210,11 @@
 
 @media (max-width: 768px) {
   .section {
-    border-top-left-radius: 36px;
-    border-top-right-radius: 36px;
     padding: var(--space-12) 0;
+  }
+
+  .section::before {
+    border-radius: 36px 36px 0 0;
   }
 
   .container {

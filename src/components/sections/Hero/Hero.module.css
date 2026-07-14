@@ -107,7 +107,7 @@
 
 .portraitFrame {
   position: relative;
-  width: min(31vw, 450px);
+  width: min(34vw, 480px);
   min-width: 300px;
   aspect-ratio: 1;
   overflow: hidden;
