@@ -45,7 +45,7 @@ export function HomeBookFeature() {
         <div className={styles.visual} aria-label="Psychology of Medical Practice book preview">
           <div className={styles.imageShell}>
             <Image
-              src="/images/book_image_home.png"
+              src="/images/book2.png"
               alt="Psychology of Medical Practice book by Dr. Senthil Tamilarasan"
               fill
               sizes="(max-width: 900px) 90vw, 680px"

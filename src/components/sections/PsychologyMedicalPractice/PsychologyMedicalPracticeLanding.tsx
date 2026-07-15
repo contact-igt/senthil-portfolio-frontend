@@ -472,7 +472,7 @@ export function PsychologyMedicalPracticeLanding() {
           <div className={styles.heroVisual} aria-label="Book preview">
             <div className={styles.bookFrame}>
               <Image
-                src="/images/book_banner.png"
+                src="/images/book1.png"
                 alt="Psychology of Medical Practice banner preview"
                 fill
                 priority
