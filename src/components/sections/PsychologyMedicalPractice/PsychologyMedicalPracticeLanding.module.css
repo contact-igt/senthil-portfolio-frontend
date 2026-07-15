@@ -14,8 +14,16 @@
   position: relative;
   min-height: min(100vh, 920px);
   background:
-    radial-gradient(circle at 42% 42%, rgba(194, 123, 127, 0.14) 0 38px, transparent 40px),
-    radial-gradient(circle at 66% 28%, rgba(0, 160, 227, 0.12) 0 54px, transparent 56px),
+    radial-gradient(
+      circle at 42% 42%,
+      rgba(194, 123, 127, 0.14) 0 38px,
+      transparent 40px
+    ),
+    radial-gradient(
+      circle at 66% 28%,
+      rgba(0, 160, 227, 0.12) 0 54px,
+      transparent 56px
+    ),
     linear-gradient(180deg, #fbf4ef 0%, #f6ece6 100%);
   color: var(--color-black);
   overflow: hidden;
@@ -27,7 +35,7 @@
 }
 
 .hero::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
@@ -55,7 +63,8 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, left, width, padding, border-radius, background-color, box-shadow;
+  will-change:
+    transform, left, width, padding, border-radius, background-color, box-shadow;
 }
 
 .scrolled {
@@ -102,7 +111,10 @@
 .navLinks a {
   color: inherit;
   text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .navLinks a:hover {
@@ -246,7 +258,10 @@
   border: none;
   cursor: pointer;
   box-shadow: var(--shadow-btn);
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease, opacity 0.2s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.25s ease,
+    opacity 0.2s ease;
   text-decoration: none;
 }
 
@@ -283,7 +298,10 @@
   border: 1.5px solid rgba(0, 47, 66, 0.15);
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 47, 66, 0.05);
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.25s ease, background-color 0.2s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.25s ease,
+    background-color 0.2s ease;
   text-decoration: none;
 }
 
@@ -307,7 +325,10 @@
   border: none;
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0, 47, 66, 0.14);
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   text-decoration: none;
 }
 
@@ -372,15 +393,15 @@
   position: relative;
   width: min(100%, 780px);
   aspect-ratio: auto;
-  min-height: clamp(540px, 54vw, 800px);
+  /* min-height: clamp(540px, 54vw, 800px); */
+  min-height: clamp(540px, 54vw, 650px);
   background: transparent;
   border: 0;
   overflow: visible;
 }
 
-
 .bookImage {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   filter: drop-shadow(0 24px 36px rgba(0, 47, 66, 0.14));
 }
@@ -561,7 +582,9 @@
   aspect-ratio: 0.82;
   border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .learnBookFrame:hover {
@@ -612,7 +635,6 @@
   color: var(--color-black);
   line-height: 1.32;
 }
-
 
 .learnCheckIcon {
   flex: 0 0 30px;
@@ -740,7 +762,6 @@
   line-height: 1.7;
   margin: 0;
 }
-
 
 /* Who Should Read This Book */
 .audienceSection {
@@ -911,7 +932,13 @@
   border-radius: 22px;
   margin-bottom: var(--space-8);
   background:
-    linear-gradient(90deg, transparent 42%, rgba(0, 47, 66, 0.2) 42%, rgba(0, 47, 66, 0.2) 58%, transparent 58%),
+    linear-gradient(
+      90deg,
+      transparent 42%,
+      rgba(0, 47, 66, 0.2) 42%,
+      rgba(0, 47, 66, 0.2) 58%,
+      transparent 58%
+    ),
     linear-gradient(135deg, #c5eaf7, #ffffff);
   border: 2px solid rgba(0, 160, 227, 0.3);
 }
@@ -939,8 +966,7 @@
   border-radius: 50%;
   background: #fbfbfb;
   overflow: hidden;
-  box-shadow:
-    0 28px 70px rgba(0, 47, 66, 0.13);
+  box-shadow: 0 28px 70px rgba(0, 47, 66, 0.13);
 }
 
 .authorImage {
@@ -954,7 +980,6 @@
 .authorCopy {
   min-width: 0;
 }
-
 
 .authorCopy h2 {
   margin: 0 0 var(--space-3);
@@ -1020,7 +1045,11 @@
   font-weight: var(--font-bold);
   line-height: 1;
   box-shadow: 0 14px 30px rgba(0, 47, 66, 0.16);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .authorActions a svg {
@@ -1043,13 +1072,16 @@
   box-shadow: 0 18px 38px rgba(0, 47, 66, 0.2);
 }
 
-
 /* Book Trailer */
 .trailerSection {
   position: relative;
   padding: clamp(76px, 9vw, 118px) 0;
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 28%),
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(255, 255, 255, 0.18),
+      transparent 28%
+    ),
     linear-gradient(180deg, #00a0e3 0%, #008ccc 100%);
   color: var(--color-white);
   overflow: hidden;
@@ -1092,7 +1124,7 @@
 }
 
 .trailerPlayerWrap::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border: 1px solid rgba(255, 255, 255, 0.24);
@@ -1124,7 +1156,9 @@
   border-radius: 10px;
   cursor: pointer;
   z-index: 3;
-  transition: background 0.2s ease, opacity 0.3s ease;
+  transition:
+    background 0.2s ease,
+    opacity 0.3s ease;
 }
 
 .trailerPlayBtn:hover {
@@ -1146,13 +1180,19 @@
   background: rgba(0, 160, 227, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 8px 32px rgba(0, 47, 66, 0.38), 0 0 0 8px rgba(0, 160, 227, 0.22);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    0 8px 32px rgba(0, 47, 66, 0.38),
+    0 0 0 8px rgba(0, 160, 227, 0.22);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .trailerPlayBtn:hover .trailerPlayIcon {
   transform: scale(1.08);
-  box-shadow: 0 12px 40px rgba(0, 47, 66, 0.44), 0 0 0 12px rgba(0, 160, 227, 0.18);
+  box-shadow:
+    0 12px 40px rgba(0, 47, 66, 0.44),
+    0 0 0 12px rgba(0, 160, 227, 0.18);
 }
 
 .trailerPlayIcon svg {
@@ -1261,7 +1301,10 @@
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows 0.28s ease, opacity 0.22s ease, margin-top 0.28s ease;
+  transition:
+    grid-template-rows 0.28s ease,
+    opacity 0.22s ease,
+    margin-top 0.28s ease;
   margin-top: 0;
 }
 
@@ -1389,7 +1432,10 @@
   font-size: clamp(1rem, 1.25vw, 1.12rem);
   font-weight: var(--font-bold);
   cursor: pointer;
-  transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .speakingInviteButton:hover {
@@ -1487,7 +1533,11 @@
   padding: clamp(42px, 7vw, 72px);
   border-radius: 28px;
   background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 35%),
+    radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.16),
+      transparent 35%
+    ),
     var(--color-brand-blue);
   color: var(--color-white);
 }
@@ -1615,21 +1665,21 @@
 
 /* Responsive queries moved to the end of the file for consolidation */
 
-
 .nav > button {
   border: 1px solid rgba(0, 47, 66, 0.08);
   box-shadow: 0 10px 24px rgba(0, 47, 66, 0.08);
 }
-
-
-
 
 /* Inside the Book - reference-style theme list */
 .insideBookSection {
   position: relative;
   padding: clamp(78px, 9vw, 122px) 0;
   background:
-    radial-gradient(circle at 12% 12%, rgba(0, 160, 227, 0.18), transparent 28%),
+    radial-gradient(
+      circle at 12% 12%,
+      rgba(0, 160, 227, 0.18),
+      transparent 28%
+    ),
     var(--color-black);
   color: var(--color-white);
   overflow: hidden;
@@ -1746,7 +1796,10 @@
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows 0.32s ease, opacity 0.26s ease, margin-bottom 0.32s ease;
+  transition:
+    grid-template-rows 0.32s ease,
+    opacity 0.26s ease,
+    margin-bottom 0.32s ease;
   margin-bottom: 0;
 }
 
@@ -1768,24 +1821,25 @@
   box-shadow: 0 12px 24px rgba(0, 47, 66, 0.16);
 }
 
-
-
 /* Read Chapter One Free */
 .freeChapterSection {
   position: relative;
   padding: clamp(76px, 9vw, 118px) 0;
-  background:
-    linear-gradient(180deg, #f8fcff 0%, #ffffff 48%, #f3ede2 100%);
+  background: linear-gradient(180deg, #f8fcff 0%, #ffffff 48%, #f3ede2 100%);
   overflow: hidden;
 }
 
 .freeChapterSection::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background:
     radial-gradient(circle at 10% 18%, rgba(0, 160, 227, 0.1), transparent 28%),
-    radial-gradient(circle at 86% 78%, rgba(252, 176, 180, 0.2), transparent 30%);
+    radial-gradient(
+      circle at 86% 78%,
+      rgba(252, 176, 180, 0.2),
+      transparent 30%
+    );
   pointer-events: none;
 }
 
@@ -1890,7 +1944,7 @@
 }
 
 .chapterPage::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -1937,10 +1991,18 @@
   background: rgba(0, 47, 66, 0.08);
 }
 
-.chapterLines i:nth-child(1) { width: 94%; }
-.chapterLines i:nth-child(2) { width: 82%; }
-.chapterLines i:nth-child(3) { width: 88%; }
-.chapterLines i:nth-child(4) { width: 62%; }
+.chapterLines i:nth-child(1) {
+  width: 94%;
+}
+.chapterLines i:nth-child(2) {
+  width: 82%;
+}
+.chapterLines i:nth-child(3) {
+  width: 88%;
+}
+.chapterLines i:nth-child(4) {
+  width: 62%;
+}
 
 .chapterNote {
   position: absolute;
@@ -1967,7 +2029,6 @@
   font-size: 0.84rem;
   line-height: 1.35;
 }
-
 
 /* Reader testimonial cards */
 .readerTestimonialsSection {
@@ -2146,6 +2207,12 @@
 /* ==========================================================================
    1. Breakpoint: 1200px (Desktop / Laptop)
    ========================================================================== */
+
+@media (max-width: 1400px) {
+  .bookFrame{
+  min-height: clamp(540px, 54vw, 600px);
+  }
+}
 @media (max-width: 1200px) {
   .nav {
     width: min(100% - 48px, 1320px);
@@ -2170,6 +2237,9 @@
 
   .authorGrid {
     gap: clamp(24px, 4vw, 48px);
+  }
+  .bookFrame{
+    min-height: clamp(510px, 48vw, 540px);
   }
 }
 
@@ -2208,9 +2278,7 @@
     inset: 0;
     min-height: 100dvh;
     border-radius: 0;
-    padding:
-      calc(var(--space-6) + env(safe-area-inset-top, 0px))
-      var(--space-6)
+    padding: calc(var(--space-6) + env(safe-area-inset-top, 0px)) var(--space-6)
       calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
     background: linear-gradient(180deg, #002f42 0%, #003a52 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2278,7 +2346,9 @@
     font-weight: var(--font-bold);
     color: #fff;
     text-decoration: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
     display: inline-block;
   }
 
@@ -2307,7 +2377,9 @@
     padding: 14px 44px;
     border-radius: 40px;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
     width: 100%;
     max-width: 280px;
     text-align: center;
@@ -2434,7 +2506,7 @@
     padding: 12px 16px;
     border-radius: 12px;
   }
-  .learnItem span{
+  .learnItem span {
     text-align: start;
   }
   /* Book Trailer breathing room adjustment */
@@ -2776,5 +2848,14 @@
 
   .scrolled .hamburger .bar {
     background-color: #ffffff;
+  }
+
+}
+
+
+@media (max-width: 450px){
+  .bookFrame{
+    aspect-ratio: 9/8;
+        margin-left: 10px;
   }
 }

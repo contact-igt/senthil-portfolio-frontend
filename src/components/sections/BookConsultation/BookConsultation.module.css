@@ -146,7 +146,11 @@
 
 .submitButton {
   grid-column: 1 / -1;
+  justify-self: center;
+  width: fit-content;
+  min-width: 220px;
   height: 60px;
+  padding: 0 var(--space-10);
   background-color: var(--color-black);
   color: var(--color-white);
   border: none;
@@ -156,7 +160,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 16px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 }
@@ -309,6 +313,13 @@
 
   .form {
     gap: 24px;
+  }
+
+  .submitButton {
+    width: fit-content;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0 var(--space-8);
   }
 }
 

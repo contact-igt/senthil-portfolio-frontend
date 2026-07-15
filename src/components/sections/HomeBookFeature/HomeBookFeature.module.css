@@ -139,7 +139,7 @@
 .imageShell {
   position: relative;
   width: min(100%, 700px);
-  aspect-ratio: 0.82;
+  aspect-ratio: 0.92;
   background: transparent;
   border-radius: 0;
   box-shadow: none;
@@ -147,7 +147,7 @@
 }
 
 .image {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   padding: 0;
 }
@@ -188,10 +188,16 @@
   }
 
   .imageShell {
+    aspect-ratio: 1;
     width: min(90vw, 560px);
   }
 }
 
+@media (max-width: 768px){
+  .imageShell {
+    aspect-ratio: 1.1;
+  }
+}
 @media (max-width: 540px) {
   .section {
     padding: var(--space-12) var(--space-4);
@@ -223,5 +229,10 @@
   .cta {
     width: min(100%, 320px);
     text-align: center;
+  }
+  @media (max-width: 390px){
+    .imageShell{
+      aspect-ratio: 1;
+    }
   }
 }
