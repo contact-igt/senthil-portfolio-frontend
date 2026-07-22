@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import styles from './HomeBookFeature.module.css';
 
+const AMAZON_BOOK_URL = 'https://www.amazon.in/dp/B0H9QZGJD6';
+
 const bookHighlights = [
   'Understand patient psychology, trust, and communication beyond clinical treatment.',
   'Learn practical lessons for doctors, hospital owners, and healthcare leaders.',
@@ -37,9 +39,21 @@ export function HomeBookFeature() {
             ))}
           </div>
 
-          <Button href="/book" variant="primary" size="lg" className={styles.cta}>
-            Read More About the Book
-          </Button>
+          <div className={styles.actions}>
+            <Button href="/book" variant="primary" size="lg" className={styles.cta}>
+              Read More About the Book
+            </Button>
+            <Button
+              href={AMAZON_BOOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              variant="primary"
+              size="lg"
+              className={styles.buyCta}
+            >
+              Buy the Book
+            </Button>
+          </div>
         </div>
 
         <div className={styles.visual} aria-label="Psychology of Medical Practice book preview">

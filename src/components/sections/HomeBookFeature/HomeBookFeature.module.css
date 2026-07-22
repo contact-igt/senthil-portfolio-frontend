@@ -119,14 +119,34 @@
   line-height: 1.58;
 }
 
-.cta {
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.cta,
+.buyCta {
   width: fit-content;
 }
 
 .cta:hover {
+  background-color: #0089c7 !important;
+  color: var(--color-white) !important;
+  box-shadow: 0 10px 28px rgba(0, 160, 227, 0.24) !important;
+}
+
+.buyCta {
   background-color: var(--color-black) !important;
   color: var(--color-white) !important;
-  box-shadow: 0 10px 28px rgba(0, 47, 66, 0.22) !important;
+  box-shadow: 0 10px 28px rgba(0, 47, 66, 0.18) !important;
+}
+
+.buyCta:hover {
+  background-color: var(--color-cta-primary) !important;
+  color: var(--color-white) !important;
+  box-shadow: 0 10px 28px rgba(0, 160, 227, 0.28) !important;
 }
 
 .visual {
@@ -171,10 +191,13 @@
     margin: 0 auto;
   }
 
-  .eyebrow,
-  .cta {
+  .eyebrow {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .actions {
+    justify-content: center;
   }
 
   .highlight {
@@ -226,7 +249,12 @@
     font-size: 0.98rem;
   }
 
-  .cta {
+  .actions {
+    width: 100%;
+  }
+
+  .cta,
+  .buyCta {
     width: min(100%, 320px);
     text-align: center;
   }

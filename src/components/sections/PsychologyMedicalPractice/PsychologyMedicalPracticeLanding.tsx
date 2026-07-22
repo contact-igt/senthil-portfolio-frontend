@@ -11,7 +11,6 @@ import {
   Users,
   TrendingUp,
   Search,
-  Check,
   Plus,
   Minus,
   Star,
@@ -19,7 +18,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Logo } from '@/components/ui/Logo';
-import { PreBookModal } from '@/components/ui/PreBookModal';
 import { SpeakingModal } from '@/components/ui/SpeakingModal';
 import styles from './PsychologyMedicalPracticeLanding.module.css';
 import 'slick-carousel/slick/slick.css';
@@ -41,6 +39,8 @@ function InstagramIcon() {
     </svg>
   );
 }
+
+const AMAZON_BOOK_URL = 'https://www.amazon.in/dp/B0H9QZGJD6';
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -322,12 +322,9 @@ const testimonialSliderSettings = {
   ],
 };
 export function PsychologyMedicalPracticeLanding() {
-  const [isPreBookOpen, setIsPreBookOpen] = useState(false);
-  const [isBuyBookDisabled, setIsBuyBookDisabled] = useState(false);
   const [isSpeakingModalOpen, setIsSpeakingModalOpen] = useState(false);
   const [openInsideIndex, setOpenInsideIndex] = useState<number | null>(0);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const [trailerStarted, setTrailerStarted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -362,12 +359,6 @@ export function PsychologyMedicalPracticeLanding() {
     }
   };
 
-  const openPreBook = () => setIsPreBookOpen(true);
-
-  const handleBuyBookClick = () => {
-    setIsBuyBookDisabled(true);
-    openPreBook();
-  };
 
   return (
     <div className={styles.page}>
@@ -384,8 +375,8 @@ export function PsychologyMedicalPracticeLanding() {
             ))}
           </div>
           <div className={styles.navRightDesktop}>
-            <Button variant="nav" size="md" onClick={openPreBook}>
-              Pre-Book Now
+            <Button variant="nav" size="md" href={AMAZON_BOOK_URL} target="_blank" rel="noreferrer">
+              Buy the Book
             </Button>
           </div>
 
@@ -432,16 +423,15 @@ export function PsychologyMedicalPracticeLanding() {
               </ul>
 
               <div className={styles.menuFooter}>
-                <button
+                <a
                   className={styles.mobileCtaButton}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    openPreBook();
-                  }}
-                  type="button"
+                  href={AMAZON_BOOK_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setMenuOpen(false)}
                 >
-                  Pre-Book Now
-                </button>
+                  Buy the Book
+                </a>
               </div>
             </div>
           )}
@@ -463,8 +453,8 @@ export function PsychologyMedicalPracticeLanding() {
               every practice decision and every successful healthcare organisation.
             </p>
             <div className={styles.heroActions}>
-              <button className={styles.heroActionPrimary} type="button" onClick={handleBuyBookClick}>Buy the Book</button>
-              {/* <a className={styles.heroActionSecondary} href="#read-chapter-one">Read Chapter One Free</a> */}
+              <a className={styles.heroActionPrimary} href={AMAZON_BOOK_URL} target="_blank" rel="noreferrer">Buy the Book</a>
+              {/* <a className={styles.heroActionSecondary} href="#read-chapter-one">Buy the Book</a> */}
               <a className={styles.heroActionGhost} href="#book-trailer">Watch the Book Trailer</a>
             </div>
           </div>
@@ -484,7 +474,7 @@ export function PsychologyMedicalPracticeLanding() {
         </div>
       </header>
 
-      {/* ── About the Book ── */}
+      {/* About the Book */}
       <section id="about-the-book" className={`${styles.section} ${styles.whiteBand}`}>
         <div className={styles.container}>
           <div className={styles.aboutGrid}>
@@ -514,7 +504,7 @@ export function PsychologyMedicalPracticeLanding() {
               </p>
               <p className={styles.aboutText}>
                 <strong>Psychology of Medical Practice</strong> explores the <strong>invisible human factors</strong> behind successful
-                medical practice — bringing together psychology, communication, leadership, patient behaviour and
+                medical practice - bringing together psychology, communication, leadership, patient behaviour and
                 practice management into one practical guide for modern healthcare professionals.
               </p>
             </div>
@@ -544,7 +534,7 @@ export function PsychologyMedicalPracticeLanding() {
           </div>
 
           <div className={styles.whyConclusion}>
-            <p>The Answers Lie Not In Medicine —</p>
+            <p>The Answers Lie Not In Medicine -</p>
             <p className={styles.whyConclusionAccent}>But In Psychology.</p>
           </div>
         </div>
@@ -606,8 +596,8 @@ export function PsychologyMedicalPracticeLanding() {
                 ))}
               </div>
               <div className={styles.learnCta}>
-                <Button variant="primary" size="lg" onClick={openPreBook}>
-                  Pre-Book Now
+                <Button variant="primary" size="lg" href={AMAZON_BOOK_URL} target="_blank" rel="noreferrer">
+                  Buy the Book
                 </Button>
               </div>
             </div>
@@ -658,7 +648,7 @@ export function PsychologyMedicalPracticeLanding() {
         <div className={styles.container}>
           <div className={styles.freeChapterGrid}>
             <div className={styles.freeChapterCopy}>
-              <span className={styles.freeChapterEyebrow}>Read Chapter One Free</span>
+              <span className={styles.freeChapterEyebrow}>Buy the Book</span>
               <h2>Start with the chapter that changes how doctors see trust.</h2>
               <p>
                 Get a focused preview of the book through one complete chapter.
@@ -680,8 +670,8 @@ export function PsychologyMedicalPracticeLanding() {
                 ))}
               </div>
 
-              <Button variant="primary" size="lg" onClick={openPreBook}>
-                Read Chapter One Free
+              <Button variant="primary" size="lg" href={AMAZON_BOOK_URL} target="_blank" rel="noreferrer">
+                Buy the Book
               </Button>
             </div>
 
@@ -817,9 +807,7 @@ export function PsychologyMedicalPracticeLanding() {
               preload="metadata"
               controls={trailerStarted}
               className={styles.trailerPlayer}
-              onPlay={() => { setIsTrailerPlaying(true); setTrailerStarted(true); }}
-              onPause={() => setIsTrailerPlaying(false)}
-              onEnded={() => setIsTrailerPlaying(false)}
+              onPlay={() => setTrailerStarted(true)}
             />
             {!trailerStarted && (
               <button
@@ -912,44 +900,8 @@ export function PsychologyMedicalPracticeLanding() {
         isOpen={isSpeakingModalOpen}
         onClose={() => setIsSpeakingModalOpen(false)}
       />
-      <PreBookModal
-        isOpen={isPreBookOpen}
-        onClose={() => setIsPreBookOpen(false)}
-      />
     </div>
   );
 }
 
 export default PsychologyMedicalPracticeLanding;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
