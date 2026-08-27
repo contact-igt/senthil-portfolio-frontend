@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
     // Disable built-in image optimization during development to avoid
     // local cache/write issues; enable in production by default.
     unoptimized: process.env.NODE_ENV === 'development',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
   },
 };
 

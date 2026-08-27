@@ -4,6 +4,7 @@ import './globals.css';
 import Footer from '@/components/sections/Footer';
 import { ScrollRefresh } from '@/components/ui/ScrollRefresh';
 import { ConditionalSections } from '@/components/ui/ConditionalSections';
+import { Navbar } from '@/components/sections/Navbar';
 import { navLinks, navCtaHref } from '@/lib/content';
 
 const homeSectionLinks = navLinks.map((link) => ({
@@ -43,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={manrope.className}>
       <body>
+        <Navbar />
         <ScrollRefresh />
         {children}
         <ConditionalSections />

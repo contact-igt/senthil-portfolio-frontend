@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { navLinks, navCtaLabel, navCtaHref } from '@/lib/content';
 import { Button } from '@/components/ui/Button';
 import { Logo } from '@/components/ui/Logo';
@@ -8,8 +9,16 @@ import { gsap } from '@/lib/animations';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  
+  const getHref = (href: string) => {
+    if (pathname !== '/' && href.startsWith('#')) {
+      return `/${href}`;
+    }
+    return href;
+  };
 
   useEffect(() => {
     if (menuOpen) {
@@ -37,7 +46,7 @@ export function Navbar() {
     // Scroll-aware background transition to dark navy blue
     const handleScroll = () => {
       if (!navRef.current) return;
-      if (window.scrollY > 80) {
+      if (window.scrollY > 80 || window.location.pathname !== '/') {
         navRef.current.classList.add(styles.scrolled);
       } else {
         navRef.current.classList.remove(styles.scrolled);
@@ -50,7 +59,11 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav ref={navRef} className={styles.nav} aria-label="Main navigation">
+    <nav 
+      ref={navRef} 
+      className={`${styles.nav} ${pathname !== '/' ? styles.scrolled : ''}`} 
+      aria-label="Main navigation"
+    >
       <Logo />
       
       {/* Desktop Links & CTA */}
@@ -58,7 +71,7 @@ export function Navbar() {
         <ul className={styles.links} role="list">
           {navLinks.map((link) => (
             <li key={link.label}>
-              <a href={link.href} className={styles.link}>
+              <a href={getHref(link.href)} className={styles.link}>
                 {link.label}
               </a>
             </li>
@@ -101,7 +114,7 @@ export function Navbar() {
             {navLinks.map((link) => (
               <li key={link.label} className={styles.mobileLinkItem}>
                 <a
-                  href={link.href}
+                  href={getHref(link.href)}
                   className={styles.mobileLink}
                   onClick={() => setMenuOpen(false)}
                 >

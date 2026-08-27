@@ -2,7 +2,6 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import type { HeroProps } from '@/types';
-import { Navbar } from '@/components/sections/Navbar';
 import { Button } from '@/components/ui/Button';
 import { TrustBar } from './TrustBar';
 import { HeroParticles } from './HeroParticles';
@@ -65,7 +64,6 @@ export function Hero({
   return (
     <header ref={sectionRef} className={styles.hero}>
       <HeroParticles />
-      <Navbar />
       <div className={styles.heroInner}>
         <div className={styles.content}>
           <h1 className={styles.heading}>

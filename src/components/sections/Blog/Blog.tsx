@@ -15,73 +15,7 @@ interface BlogPost {
 
 interface BlogProps {
   title?: string;
-  posts?: BlogPost[];
 }
-
-const DEFAULT_POSTS: BlogPost[] = [
-    {
-    id: 'blog-1',
-    date: '23 June 26',
-    title: 'Why Every Eye Hospital Needs a CRM: The Missing Link Between Clinical Excellence and Practice Growth',
-    categories: ['CRM', 'Eye Hospital', 'Practice Growth'],
-    href: 'https://www.linkedin.com/pulse/why-every-eye-hospital-needs-crm-missing-link-between-senthil-njgxe/',
-    imageSrc: '/images/blog3.png',
-    imageAlt: 'Why Every Eye Hospital Needs a CRM: The Missing Link Between Clinical Excellence and Practice Growth',
-  },
-  {
-    id: 'blog-2',
-    date: '11 May 26',
-    title: 'Why Every Child Must Learn the Value of Money Early',
-    categories: ['Money', 'Children', 'Learning'],
-    href: 'https://www.linkedin.com/pulse/why-every-child-must-learn-value-money-early-dr-tamilarasan-senthil-bu5qc/',
-    imageSrc: '/images/blog1.png',
-    imageAlt: 'Blog artwork about children learning the value of money early',
-  },
-  {
-    id: 'blog-3',
-    date: '08 May 26',
-    title: 'The Barbeque Nation Problem in Eye Hospital Expansion',
-    categories: ['Eye Hospitals', 'Expansion', 'Strategy'],
-    href: 'https://www.linkedin.com/pulse/barbeque-nation-problem-eye-hospital-expansion-dr-tamilarasan-senthil-vswrc/',
-    imageSrc: '/images/blog2.png',
-    imageAlt: 'Blog artwork about the Barbeque Nation problem in eye hospital expansion',
-  },
-  // {
-  //   id: 'blog-3',
-  //   date: '17 Apr 26',
-  //   title: 'Start a Orthoptics and Vision Therapy Clinic',
-  //   categories: ['Orthoptics', 'Vision Therapy', 'Clinic'],
-  //   imageSrc: '/images/blog3.png',
-  //   imageAlt: 'Blog artwork about starting an orthoptics and vision therapy clinic',
-  // },
-  {
-    id: 'blog-4',
-    date: '08 Apr 26',
-    title: 'Success Vs Significance',
-    categories: ['Success', 'Purpose', 'Leadership'],
-    href: 'https://www.linkedin.com/pulse/success-vs-significance-dr-tamilarasan-senthil-aam8c/',
-    imageSrc: '/images/blog4.png',
-    imageAlt: 'Blog artwork about success versus significance',
-  },
-  {
-    id: 'blog-5',
-    date: '24 Mar 26',
-    title: '12 Mental Models for a succesful Medical Practice',
-    categories: ['Mental Models', 'Medical Practice', 'Growth'],
-    href: 'https://www.linkedin.com/pulse/12-mental-models-succesful-medical-practice-dr-tamilarasan-senthil-uwvac/',
-    imageSrc: '/images/blog5.png',
-    imageAlt: 'Blog artwork about mental models for a successful medical practice',
-  },
-  {
-    id: 'blog-6',
-    date: '18 Mar 26',
-    title: 'Why Doctors Build Practices... But Rarely Build a Legacy',
-    categories: ['Doctors', 'Practice', 'Legacy'],
-    href: 'https://www.linkedin.com/pulse/why-doctors-build-practices-rarely-legacy-dr-tamilarasan-senthil-l1f6c/',
-    imageSrc: '/images/blog6.png',
-    imageAlt: 'Blog artwork about doctors building practices and legacy',
-  },
-];
 
 function BlogGraphic({ variant = 'ux' }: { variant?: BlogPost['graphicVariant'] }) {
   if (variant === 'validate') {
@@ -126,7 +60,36 @@ function BlogGraphic({ variant = 'ux' }: { variant?: BlogPost['graphicVariant'] 
   );
 }
 
-export function Blog({ title = 'Blogs', posts = DEFAULT_POSTS }: BlogProps) {
+async function fetchBlogs(): Promise<BlogPost[]> {
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';
+    const res = await fetch(`${apiUrl}/blogs`, { next: { revalidate: 60 } });
+    if (!res.ok) {
+      console.error('Failed to fetch blogs');
+      return [];
+    }
+    const json = await res.json();
+    if (json.data && Array.isArray(json.data)) {
+      return json.data.map((blog: any) => ({
+        id: blog.id.toString(),
+        date: blog.published_at ? new Date(blog.published_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : '',
+        title: blog.title,
+        categories: blog.categories || [], // API might not have categories, default to empty
+        href: `/blog/${blog.slug}`,
+        imageSrc: blog.cover_img_url || null,
+        imageAlt: blog.title,
+      }));
+    }
+    return [];
+  } catch (error) {
+    console.error('Error fetching blogs:', error);
+    return [];
+  }
+}
+
+export async function Blog({ title = 'Blogs' }: BlogProps) {
+  const posts = await fetchBlogs();
+
   return (
     <section id="blog" className={styles.section} aria-labelledby="blog-heading">
       <div className={styles.container}>
@@ -134,43 +97,46 @@ export function Blog({ title = 'Blogs', posts = DEFAULT_POSTS }: BlogProps) {
           {title}
         </h2>
 
-        <div className={styles.grid}>
-          {posts.map((post) => (
-            <a
-              key={post.id}
-              href={post.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.card}
-              aria-label={post.title}
-            >
-              <div className={styles.media}>
-                {post.imageSrc ? (
-                  <Image
-                    src={post.imageSrc}
-                    alt={post.imageAlt ?? post.title}
-                    fill
-                    sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                    className={styles.image}
-                  />
-                ) : (
-                  <BlogGraphic variant={post.graphicVariant} />
-                )}
-              </div>
+        {posts.length > 0 ? (
+          <div className={styles.grid}>
+            {posts.map((post) => (
+              <a
+                key={post.id}
+                href={post.href}
+                className={styles.card}
+                aria-label={post.title}
+              >
+                <div className={styles.media}>
+                  {post.imageSrc ? (
+                    <Image
+                      src={post.imageSrc}
+                      alt={post.imageAlt ?? post.title}
+                      fill
+                      sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                      className={styles.image}
+                      style={{ objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <BlogGraphic variant={post.graphicVariant} />
+                  )}
+                </div>
 
-              <time className={styles.date}>{post.date}</time>
-              <h3 className={styles.cardTitle}>
-                {post.title}
-              </h3>
-              <div className={styles.divider} aria-hidden="true" />
-              <p className={styles.bottomCategories}>{post.categories.join(' | ')}</p>
-            </a>
-          ))}
-        </div>
+                <time className={styles.date}>{post.date}</time>
+                <h3 className={styles.cardTitle}>
+                  {post.title}
+                </h3>
+                <div className={styles.divider} aria-hidden="true" />
+                <p className={styles.bottomCategories}>{post.categories.join(' | ')}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p style={{ textAlign: 'center', margin: '2rem 0', color: 'var(--color-text-muted)' }}>No blogs available at the moment.</p>
+        )}
 
         <div className={styles.exploreWrap}>
           <Button
-      href="https://www.linkedin.com/in/senthilophthall/recent-activity/articles/"
+            href="https://www.linkedin.com/in/senthilophthall/recent-activity/articles/"
             target="_blank"
             rel="noopener noreferrer"
             variant="primary"
