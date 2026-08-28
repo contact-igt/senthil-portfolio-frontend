@@ -24,88 +24,78 @@
   overflow-wrap: balance;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: clamp(40px, 3.6vw, 48px);
-  row-gap: clamp(82px, 8vw, 104px);
+.list {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.card {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
+.listItem {
+  display: block;
   text-decoration: none;
   color: inherit;
+  padding: 60px 0;
+  border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-.card:focus-visible {
-  outline: 2px solid var(--color-cta-primary);
-  outline-offset: 4px;
-  border-radius: 8px;
+.listItem:first-child {
+  padding-top: 0;
 }
 
-.media {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1.78 / 1;
-  margin: 0 0 24px;
-  overflow: hidden;
-  border-radius: 74px;
-  background: #ffffff;
+.listItem:hover {
+  opacity: 0.8;
 }
 
-.image {
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.38s ease;
-}
-
-.card:hover .image {
-  transform: scale(1.05);
-}
-
-.date {
-  display: block;
-  margin: 0 0 18px;
-  color: var(--color-section-subtext);
-  font-size: clamp(0.95rem, 1.05vw, 1.08rem);
-  font-weight: var(--font-regular);
+.itemTitle {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  margin: 0 0 20px 0;
   line-height: 1.2;
+  color: #222;
 }
 
-.cardTitle {
-  /* autoprefixer: off */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  /* autoprefixer: on */
-  overflow: hidden;
-  min-height: 2.78em;
-  max-height: 2.78em;
-  margin: 0;
-  color: var(--color-black);
-  font-size: clamp(1.16rem, 1.36vw, 1.38rem);
-  font-weight: var(--font-bold);
-  line-height: 1.25;
-  letter-spacing: 0;
+.itemExcerpt {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  color: #555;
+  margin: 0 0 30px 0;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
-.divider {
-  width: 100%;
-  margin: 0 0 12px;
-  border-top: 1px dashed rgba(0, 47, 66, 0.34);
+.itemFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
 }
 
-.bottomCategories {
-  margin: 0 0 24px;
-  color: var(--color-section-subtext);
-  font-size: clamp(0.92rem, 1.02vw, 1.04rem);
-  font-weight: var(--font-regular);
-  line-height: 1.25;
-  letter-spacing: 0;
-  overflow-wrap: anywhere;
+.itemMeta {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.itemReadMore {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #333;
+  font-weight: 600;
+  border: 1px solid #e0e0e0;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.listItem:hover .itemReadMore {
+  background-color: #f0f0f0;
 }
 
 .exploreWrap {
@@ -435,16 +425,6 @@
   background: rgba(255, 255, 255, 0.56);
 }
 
-@media (max-width: 1180px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cardTitle {
-    min-height: 88px;
-  }
-}
-
 @media (max-width: 760px) {
   .section {
     padding: 68px 0 78px;
@@ -458,19 +438,9 @@
     margin-bottom: 44px;
     font-size: clamp(1.9rem, 8vw, 2.45rem);
   }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 54px;
-  }
-
-  .media {
-    margin: 0 0 20px;
-    border-radius: 44px;
-  }
-
-  .cardTitle {
-    min-height: auto;
+  
+  .itemTitle {
+    font-size: clamp(1.5rem, 5vw, 2rem);
   }
 }
 
@@ -487,35 +457,15 @@
     margin-bottom: var(--space-10);
   }
 
-  .media {
-    border-radius: 28px;
+  .itemFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
   }
 }
 
 @media (max-width: 390px) {
   .container {
     padding-inline: var(--space-4);
-  }
-
-  .grid {
-    justify-items: center;
-    gap: 46px;
-  }
-
-  .card {
-    width: min(100%, 336px);
-    margin-inline: auto;
-  }
-
-  .media {
-    width: 100%;
-    margin-inline: auto;
-    border-radius: 24px;
-  }
-
-  .date,
-  .cardTitle,
-  .bottomCategories {
-    width: 100%;
   }
 }
