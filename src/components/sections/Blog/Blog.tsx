@@ -19,7 +19,7 @@ interface BlogProps {
 
 async function fetchBlogs(): Promise<BlogPost[]> {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.ophthall.in/api/v1';
     const res = await fetch(`${apiUrl}/blogs`, { cache: 'no-store' });
     if (!res.ok) {
       console.error('Failed to fetch blogs');
@@ -30,7 +30,7 @@ async function fetchBlogs(): Promise<BlogPost[]> {
       return json.data.map((blog: any) => {
         let snippet = blog.overview || (blog.content ? blog.content.replace(/<[^>]+>/g, '') : '');
         if (snippet.length > 150) snippet = snippet.substring(0, 150) + '...';
-        
+
         return {
           id: blog.id.toString(),
           date: blog.published_at ? new Date(blog.published_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }).toUpperCase() : '',
